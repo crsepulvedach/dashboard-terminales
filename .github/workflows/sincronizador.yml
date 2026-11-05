@@ -1,28 +1,23 @@
-name: Robot de Jira
+name: Prueba de Acceso Total
 on:
-  schedule:
-    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
-  descargar-datos:
+  prueba:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Obtener Jira B2C
+      - name: Consultar Proyectos Disponibles
         run: |
-          # Usando tu JQL exacto: Proyecto B2C, tipos Story/Bug/Task, desde 2026, In Progress/Done
+          # Esta consulta pide la lista de proyectos que el Token PUEDE VER
           curl -s -u "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_TOKEN }}" \
-          -X GET "https://tdentel.atlassian.net/rest/api/3/search/jql?jql=project%20in%20(B2C)%20AND%20updated%20%3E%3D%202026-01-01%20AND%20statusCategory%20in%20(%22In%20Progress%22%2C%22Done%22)%20AND%20issuetype%20in%20(%22Story%22%2C%22Bug%22%2C%22Task%22)&fields=summary,status,statusCategory,created,resolutiondate,issuetype,assignee,project,customfield_10206,sprint&maxResults=100" \
+          -X GET "https://tdentel.atlassian.net/rest/api/3/project" \
           -H "Content-Type: application/json" > data.json
-
-      - name: Guardar en Repo
+      
+      - uses: actions/checkout@v4
+      - name: Guardar
         run: |
           git config --global user.name "Robot"
           git config --global user.email "robot@github.com"
           git add data.json
-          git commit -m "Sincronización B2C: Data Real" || exit 0
+          git commit -m "Lista de proyectos" || exit 0
           git push
