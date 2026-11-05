@@ -1,5 +1,7 @@
 name: Robot de Jira
 on:
+  schedule:
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -10,25 +12,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Probar Conexión Jira
+      - name: Obtener Jira B2C
         run: |
-          # Intentamos la descarga y guardamos el código de respuesta (ej: 200, 401, 403)
-          RESPONSE=$(curl -s -o data.json -w "%{http_code}" -u "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_TOKEN }}" \
-          -X GET "https://tdentel.atlassian.net/rest/api/3/search/jql?jql=project%3DBURC&maxResults=10" \
-          -H "Content-Type: application/json")
-          
-          echo "Código de respuesta Jira: $RESPONSE"
-          
-          if [ "$RESPONSE" != "200" ]; then
-            echo "Error: No se pudo conectar. Revisa el Email y el Token en los Secrets."
-            cat data.json # Esto nos mostrará el error que devuelve Jira
-            exit 1
-          fi
+          # Usando tu JQL exacto: Proyecto B2C, tipos Story/Bug/Task, desde 2026, In Progress/Done
+          curl -s -u "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_TOKEN }}" \
+          -X GET "https://tdentel.atlassian.net/rest/api/3/search/jql?jql=project%20in%20(B2C)%20AND%20updated%20%3E%3D%202026-01-01%20AND%20statusCategory%20in%20(%22In%20Progress%22%2C%22Done%22)%20AND%20issuetype%20in%20(%22Story%22%2C%22Bug%22%2C%22Task%22)&fields=summary,status,statusCategory,created,resolutiondate,issuetype,assignee,project,customfield_10206,sprint&maxResults=100" \
+          -H "Content-Type: application/json" > data.json
 
       - name: Guardar en Repo
         run: |
           git config --global user.name "Robot"
           git config --global user.email "robot@github.com"
           git add data.json
-          git commit -m "Sincronización exitosa" || exit 0
+          git commit -m "Sincronización B2C: Data Real" || exit 0
           git push
