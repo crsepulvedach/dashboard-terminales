@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BURC - Tablero Ágil Ejecutivo & Análisis de Flujo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="badge-icon">⚡</div>
+        <div class="brand-info">
+          <h1><span id="header-title">BURC • Panel Ágil Ejecutivo</span> <span class="badge-pill" id="header-pill">B2C_UFU_REPORT_CDG</span></h1>
+          <p id="header-subtitle">Diagnóstico de Flujo, Cuellos de Botella y Capacidad de Entrega</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-secondary" onclick="window.print()">🖨️ Exportar / Imprimir PDF</button>
+        <a id="header-board-link" href="https://tdentel.atlassian.net/jira/software/projects/BURC/boards/15371" target="_blank" class="btn btn-primary">Abrir Tablero en Jira ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-layout">
+    <!-- BARRA DE CONTROL GLOBAL Y FILTROS DE EQUIPOS -->
+    <div class="control-bar">
+      <div class="filter-section">
+        <span class="filter-label">Equipo / Segmentación JQL:</span>
+        <div class="pills-group" id="teamFilterPills">
+          <button class="pill-btn active" onclick="setTeamFilter('all')">Consolidado</button>
+          <button class="pill-btn" onclick="setTeamFilter('chile')">CG Chile (CDG_CL)</button>
+          <button class="pill-btn" onclick="setTeamFilter('peru')">CG Perú (CDG_PE)</button>
+          <button class="pill-btn" onclick="setTeamFilter('supply')">Supply Chain (Supply)</button>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="toggle-wrapper">
+          <span class="toggle-label" id="toggleLabel">Visión Completa (+ Operaciones)</span>
+          <label class="switch">
+            <input type="checkbox" id="strategicToggle" onchange="setStrategicToggle(this.checked)">
+            <span class="slider-toggle"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANNER DE ALERTA DINÁMICO -->
+    <div class="alert-banner" id="alertBanner">
+      <div class="alert-content">
+        <div class="alert-icon">!</div>
+        <div>
+          <div class="alert-title" id="alertTitle">Atención Directiva: 1 Iniciativa Detenida en Inventario Real</div>
+          <div class="alert-desc" id="alertDesc">BURC-771 ("Lanzamiento Xiaomi Note 17") acumula 74 días detenido en Supply Chain por acuerdos de precios con fabricante.</div>
+        </div>
+      </div>
+      <button class="btn btn-secondary" onclick="switchTab('tab-bloqueos')" style="border-color: rgba(251,113,133,0.4); color: var(--accent-rose);">
+        Ir a Mesa de Destrabe (<span id="alertCountBadge">1</span>)
+      </button>
+    </div>
+
+    <!-- PESTAÑAS DE NAVEGACIÓN -->
+    <div class="tab-bar">
+      <button class="tab-item active" onclick="switchTab('tab-resumen')">📊 Resumen Ejecutivo</button>
+      <button class="tab-item" onclick="switchTab('tab-flujo')">🌊 Flujo & Rendimiento (Throughput)</button>
+      <button class="tab-item" onclick="switchTab('tab-aging')">⏳ Antigüedad & Tiempos (Aging)</button>
+      <button class="tab-item" onclick="switchTab('tab-bloqueos')">🚨 Bloqueos & Cuellos de Botella (<span id="tab-blockers-count">1</span>)</button>
+      <button class="tab-item" onclick="switchTab('tab-inventario')">📋 Inventario Activo (<span id="tab-inventory-count">112</span>)</button>
+      <button class="tab-item" onclick="switchTab('tab-acciones')">🎯 Plan de Acción Directivo</button>
+    </div>
+
+    <!-- TAB 1: RESUMEN EJECUTIVO -->
+    <div id="tab-resumen" class="tab-content active">
+      <div class="kpi-grid" id="kpi-container"></div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3>Ritmo de Flujo Semanal (Ingreso vs Salida)</h3>
+              <p>Comparación semanal de requerimientos ingresados vs entregados</p>
+            </div>
+          </div>
+          <div class="chart-container" id="weekly-flow-container"></div>
+          <div id="weekly-finding-container" style="font-size: 0.75rem; color: var(--text-dim); margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.5rem;"></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 id="status-dist-title">Distribución de Requerimientos Activos</h3>
+              <p>Desglose por columnas de estado del flujo de valor</p>
+            </div>
+          </div>
+          <div id="status-bars-container" style="display: flex; flex-direction: column; gap: 0.85rem;"></div>
+          <div id="wip-warning-box" style="margin-top: 1.25rem; background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.2); padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.8rem; color: #cbd5e1;"></div>
+        </div>
+      </div>
+
+      <!-- MATRIZ DE CAPACIDAD Y ENFOQUE -->
+      <div class="card" style="margin-bottom: 22px;">
+        <div class="card-header">
+          <div>
+            <h3>Matriz de Capacidad y Enfoque por Equipo</h3>
+            <p id="matrixScopeLabel">Vista Consolidada — Datos Reales de Jira</p>
+          </div>
+        </div>
+        <div class="data-table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Equipo / Frente</th>
+                <th>Etiqueta Oficial</th>
+                <th>Tablero Jira</th>
+                <th>Ingresos (In)</th>
+                <th>Entregas (Out)</th>
+                <th>Tasa Cumplimiento</th>
+                <th>WIP Activo Real</th>
+                <th>Bloqueos</th>
+                <th>% Estratégico (Planning)</th>
+                <th>Diagnóstico de Capacidad</th>
+              </tr>
+            </thead>
+            <tbody id="matrixTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3>Balance Semanal: Planning vs Operativo</h3>
+              <p id="chartScopeLabel">Filtro aplicado</p>
+            </div>
+          </div>
+          <div style="height: 200px; display:flex; align-items:center; justify-content:center;" id="weeklyChartContainer"></div>
+          <div style="display:flex; justify-content:center; gap:20px; font-size:12px; margin-top:6px;" id="chartLegend">
+            <span style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#c084fc; border-radius:2px;"></span> Estratégico (Planning)</span>
+            <span style="display:flex; align-items:center; gap:6px;"><span style="width:10px; height:10px; background:#64748b; border-radius:2px;"></span> Operativo / Rutina</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3>Composición de Capacidad y Asfixia Operativa</h3>
+              <p>Distribución porcentual en vuelo</p>
+            </div>
+          </div>
+          <div style="padding-top: 10px;" id="capacityDistributionContainer"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: FLUJO Y SIMULADOR WIP -->
+    <div id="tab-flujo" class="tab-content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3>Diagnóstico del Cuello de Botella: Ley de Little</h3>
+              <p>Relación matemática: Lead Time = WIP / Throughput Diario</p>
+            </div>
+          </div>
+          <p id="littles-law-desc" style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 1rem;"></p>
+          <div style="background: rgba(0,0,0,0.3); padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--accent-amber); margin-bottom: 1.25rem;">
+            <div id="littles-law-formula" style="font-size: 1.1rem; font-weight: 700; color: #fff;"></div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+              Esto explica por qué los nuevos requerimientos perciben semanas de espera aunque el esfuerzo de desarrollo sea menor.
+            </p>
+          </div>
+          <h4 style="font-size: 0.95rem; color: #fff; margin-bottom: 0.5rem;">Causas Raíz Identificadas:</h4>
+          <ul id="root-causes-list" style="font-size: 0.84rem; color: var(--text-muted); padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem;"></ul>
+        </div>
+        <div class="card simulator-box">
+          <div class="card-header" style="border-color: rgba(255,255,255,0.1);">
+            <div>
+              <h3 style="color: var(--accent-blue);">🎛️ Simulador Ágil de Reducción de WIP</h3>
+              <p>Mueve el control para ver cómo limiting WIP acelera el tiempo de respuesta al negocio</p>
+            </div>
+          </div>
+          <div class="slider-group">
+            <div class="slider-labels">
+              <span>Límite de WIP Simulado (Tareas en ejecución)</span>
+              <strong id="wip-display" style="color: var(--accent-blue); font-size: 1.1rem;"></strong>
+            </div>
+            <input type="range" class="slider-input" id="wip-slider" oninput="updateSimulator(this.value)">
+            <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim); margin-top: 0.3rem;">
+              <span id="slider-min-lbl">Mínimo</span>
+              <span id="slider-rec-lbl">Recomendado</span>
+              <span id="slider-cur-lbl">Actual</span>
+            </div>
+          </div>
+          <div class="sim-results">
+            <div class="sim-stat">
+              <div class="val" id="sim-leadtime">0 días</div>
+              <div class="desc">Tiempo Promedio de Entrega (Lead Time)</div>
+            </div>
+            <div class="sim-stat">
+              <div class="val" id="sim-improvement" style="color: var(--text-muted);">0%</div>
+              <div class="desc">Reducción de Tiempo de Ciclo</div>
+            </div>
+          </div>
+          <div id="sim-callout" style="margin-top: 1rem; font-size: 0.78rem; color: #94a3b8; text-align: center;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: AGING Y TIEMPOS -->
+    <div id="tab-aging" class="tab-content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3>Distribución de Antigüedad del Backlog (Aging Work)</h3>
+              <p id="agingScopeLabel">Evaluación de tareas activas pendientes</p>
+            </div>
+          </div>
+          <div id="aging-bars-container" style="display: flex; flex-direction: column; gap: 1rem;"></div>
+          <div id="agingInsightBox" style="font-size: 0.78rem; color: var(--text-muted); margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;"></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3>Distribución de Prioridades</h3>
+              <p>Evaluación de objetividad en la priorización</p>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center; height: 180px; position: relative;">
+            <svg viewBox="0 0 36 36" style="width: 160px; height: 160px; transform: rotate(-90deg);" id="priority-donut-svg"></svg>
+            <div style="position: absolute; text-align: center;">
+              <div id="priority-donut-pct" style="font-size: 1.7rem; font-weight: 700; color: #fff;">0%</div>
+              <div style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase;">Alta / Crítica</div>
+            </div>
+          </div>
+          <div id="priority-legend" style="display: flex; justify-content: space-around; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem; font-size: 0.8rem;"></div>
+          <p id="priority-quote" style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem; text-align: center;"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: BLOQUEOS Y DETENIDOS -->
+    <div id="tab-bloqueos" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 style="color: var(--accent-rose);" id="blockers-header-title">🚨 Mesa de Destrabe Directivo</h3>
+            <p>Iniciativas que requieren acuerdos y escalamiento formal con líderes de otras áreas</p>
+          </div>
+          <span class="badge-status status-detenido">Acción Inmediata Requerida</span>
+        </div>
+        <div id="blockers-container"></div>
+      </div>
+    </div>
+
+    <!-- TAB 5: INVENTARIO ACTIVO -->
+    <div id="tab-inventario" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3>Explorador de Requerimientos y Tareas Activas</h3>
+            <p id="inventory-subtitle">Listado de tareas en vuelo</p>
+          </div>
+        </div>
+        <div class="filter-bar">
+          <div class="filter-buttons" id="filter-buttons-container"></div>
+          <input type="text" id="table-search" class="search-box" placeholder="Buscar por clave o título..." onkeyup="handleSearchInput(this.value)">
+        </div>
+        <div class="data-table-container">
+          <table class="data-table" id="task-table">
+            <thead>
+              <tr>
+                <th>Clave</th>
+                <th>Resumen del Requerimiento</th>
+                <th>Frente</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+                <th>Prioridad</th>
+                <th>Asignado</th>
+                <th>Antigüedad</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 6: PLAN DE ACCIÓN DIRECTIVO -->
+    <div id="tab-acciones" class="tab-content">
+      <div class="action-grid" id="actions-container"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
