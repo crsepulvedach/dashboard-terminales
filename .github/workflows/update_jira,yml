@@ -1,0 +1,27 @@
+name: Sincronizador Automático Jira-Dashboard
+on:
+  schedule:
+    - cron: '0 * * * *' # Se ejecuta automáticamente cada hora
+  workflow_dispatch: # Te permite ejecutarlo manualmente con un botón en GitHub
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar Repositorio
+        uses: actions/checkout@v3
+
+      - name: Extraer Datos de Jira
+        run: |
+          # Consulta JQL: Proyecto BURC, creados desde junio 2026, no finalizados
+          curl -s -u "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_TOKEN }}" \
+          -X GET "https://tdentel.atlassian.net/rest/api/3/search?jql=project%20%3D%20BURC%20AND%20created%20%3E%3D%20%222026-06-22%22%20AND%20statusCategory%20%21%3D%20Done&maxResults=1000&fields=key,summary,status,assignee,priority,labels,created" \
+          -H "Content-Type: application/json" > data.json
+
+      - name: Commit y Push de Datos
+        run: |
+          git config --global user.name "Rovo Data Bot"
+          git config --global user.email "rovo-bot@atlassian.com"
+          git add data.json
+          git commit -m "🔄 Sincronización automática: Datos de Jira actualizados" || exit 0
+          git push
