@@ -1,23 +1,20 @@
 name: Update Jira Data
 on:
   schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
+    - cron: '0 * * * *' # Se ejecuta cada hora automáticamente
+  workflow_dispatch: # Permite ejecutarlo manualmente con un botón
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      - name: Fetch Data from Jira (API v3)
+      - name: Fetch Data from Jira
         run: |
-          # Usando el nuevo endpoint /search/jql y solicitando campos específicos
           curl -u ${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_TOKEN }} \
-          -X GET "https://tdentel.atlassian.net/rest/api/3/search/jql?jql=project=BURC+AND+statusCategory!=Done&fields=key,summary,status,assignee,priority,labels,created" \
+          -X GET "https://tdentel.atlassian.net/rest/api/3/search?jql=project=BURC+AND+statusCategory!=Done" \
           -H "Content-Type: application/json" > data.json
 
       - name: Commit and Push
@@ -25,5 +22,5 @@ jobs:
           git config --global user.name "JiraDataBot"
           git config --global user.email "bot@github.com"
           git add data.json
-          git commit -m "Sincronización: API v3 Jira" || exit 0
+          git commit -m "Actualización automática de datos Jira" || exit 0
           git push
