@@ -1,27 +1,26 @@
-name: Sincronizador Automático Jira-Dashboard
+name: Update Jira Data
 on:
   schedule:
-    - cron: '0 * * * *' # Se ejecuta automáticamente cada hora
-  workflow_dispatch: # Te permite ejecutarlo manualmente con un botón en GitHub
+    - cron: '0 * * * *' # Se ejecuta cada hora automáticamente
+  workflow_dispatch: # Permite ejecutarlo manualmente con un botón
 
 jobs:
-  update-data:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Clonar Repositorio
-        uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v2
 
-      - name: Extraer Datos de Jira
+      - name: Fetch Data from Jira
         run: |
-          # Consulta JQL: Proyecto BURC, creados desde junio 2026, no finalizados
-          curl -s -u "${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_TOKEN }}" \
-          -X GET "https://tdentel.atlassian.net/rest/api/3/search?jql=project%20%3D%20BURC%20AND%20created%20%3E%3D%20%222026-06-22%22%20AND%20statusCategory%20%21%3D%20Done&maxResults=1000&fields=key,summary,status,assignee,priority,labels,created" \
+          curl -u ${{ secrets.JIRA_EMAIL }}:${{ secrets.JIRA_TOKEN }} \
+          -X GET "https://tdentel.atlassian.net/rest/api/3/search?jql=project=BURC+AND+statusCategory!=Done" \
           -H "Content-Type: application/json" > data.json
 
-      - name: Commit y Push de Datos
+      - name: Commit and Push
         run: |
-          git config --global user.name "Rovo Data Bot"
-          git config --global user.email "rovo-bot@atlassian.com"
+          git config --global user.name "JiraDataBot"
+          git config --global user.email "bot@github.com"
           git add data.json
-          git commit -m "🔄 Sincronización automática: Datos de Jira actualizados" || exit 0
+          git commit -m "Actualización automática de datos Jira" || exit 0
           git push
