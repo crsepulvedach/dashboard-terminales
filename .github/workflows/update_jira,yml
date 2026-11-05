@@ -25,5 +25,5 @@ jobs:
           git config --global user.name "JiraDataBot"
           git config --global user.email "bot@github.com"
           git add data.json
-          git commit -m "🔄 Sincronización: API v3 Jira" || exit 0
+          git commit -m "Sincronización: API v3 Jira" || exit 0
           git push
