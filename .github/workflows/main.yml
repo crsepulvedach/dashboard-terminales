@@ -1,4 +1,4 @@
-name: Update Jira Data
+name: Update Jira Data Review
 on:
   schedule:
     - cron: '0 * * * *' # Se ejecuta cada hora automáticamente
