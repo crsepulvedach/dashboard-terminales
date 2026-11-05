@@ -1,0 +1,21 @@
+name: Test Jira
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test Jira Login
+        run: |
+          curl -s \
+          -u "$JIRA_EMAIL:$JIRA_TOKEN" \
+          -H "Accept: application/json" \
+          https://$JIRA_DOMAIN.atlassian.net/rest/api/3/myself
+
+        env:
+          JIRA_DOMAIN: ${{ secrets.JIRA_DOMAIN }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
