@@ -694,8 +694,49 @@ const state = {
         `;
       });
       document.getElementById('actions-container').innerHTML = actHtml;
-      console.log("rawInventoryItems:", rawInventoryItems.length);    
+      //console.log("rawInventoryItems:", rawInventoryItems.length);    
 
       // Ejecutar el motor de filtrado inicial
-      applyGlobalFilters();
+      //applyGlobalFilters();
+      fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+
+          rawInventoryItems = (data.issues || []).map(issue => {
+
+            const labels = issue.fields.labels || [];
+
+            return {
+              key: issue.key,
+              summary: issue.fields.summary,
+
+              team:
+                labels.includes('CDG_CL') ? 'chile' :
+                labels.includes('CDG_PE') ? 'peru' :
+                'supply',
+
+              isPlanning: labels.includes('Planning'),
+
+              status: issue.fields.status?.name || 'POR HACER',
+
+              priority: issue.fields.priority?.name || 'Medium',
+
+              assignee:
+                issue.fields.assignee?.displayName || 'Sin Asignar',
+
+              ageDays: Math.floor(
+                (new Date() - new Date(issue.fields.created))
+                / (1000 * 60 * 60 * 24)
+              )
+            };
+          });
+
+          console.log('Tickets Jira:', rawInventoryItems.length);
+
+          applyGlobalFilters();
+
+        })
+        .catch(error => {
+          console.error('Error cargando Jira:', error);
+        });    
     });
