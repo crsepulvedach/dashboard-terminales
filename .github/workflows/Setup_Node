@@ -1,0 +1,11 @@
+- name: Setup Node
+  uses: actions/setup-node@v4
+  with:
+    node-version: 20
+
+- name: Fetch Data from Jira
+  run: node scripts/fetch-jira.js
+  env:
+    JIRA_DOMAIN: ${{ secrets.JIRA_DOMAIN }}
+    JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+    JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
