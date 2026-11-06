@@ -619,7 +619,11 @@ const state = {
         if (i.status === 'En Análisis') statusBadge = '<span class="badge-status status-en-analisis">En Análisis</span>';
         if (i.status === 'Implementado') statusBadge = '<span class="badge-status status-implementado">Implementado</span>';
         if (i.status === 'Detenido') statusBadge = '<span class="badge-status status-detenido">Detenido</span>';
-
+        console.log(
+              'TABLA:',
+              i.key,
+              i.status
+            );
         html += `
           <tr>
             <td><a href="https://tdentel.atlassian.net/browse/${i.key}" target="_blank" style="color: var(--accent-blue); font-weight:700; text-decoration: none;">${i.key}</a></td>
