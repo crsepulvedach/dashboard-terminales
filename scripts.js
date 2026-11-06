@@ -733,6 +733,16 @@ const state = {
 
           console.log('Tickets Jira:', rawInventoryItems.length);
 
+          if (data.issues && data.issues.length > 0) {
+              const ultimaFecha = data.issues[0].fields.created;
+              const fechaFormateada = new Date(
+                ultimaFecha
+              ).toLocaleString('es-CL');
+
+              document.getElementById('last-update').innerHTML =
+                `Última actualización de datos: ${fechaFormateada}`;
+            }    
+
           applyGlobalFilters();
 
         })
