@@ -694,6 +694,7 @@ const state = {
         `;
       });
       document.getElementById('actions-container').innerHTML = actHtml;
+      console.log("rawInventoryItems:", rawInventoryItems.length);    
 
       // Ejecutar el motor de filtrado inicial
       applyGlobalFilters();
