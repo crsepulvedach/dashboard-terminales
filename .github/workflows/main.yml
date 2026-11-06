@@ -17,6 +17,11 @@ jobs:
           -X GET "https://${{ secrets.JIRA_DOMAIN }}.atlassian.net/rest/api/3/search/jql?jql=project%3DBURC%20%20ORDER%20BY%20created%20DESC&fields=key,summary,status,assignee,priority,labels,created&maxResults=1000" \
           -H "Content-Type: application/json" > data.json
 
+          jq -n \
+      --arg ts "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
+      --slurpfile jira jira_raw.json \
+      '{lastUpdate:$ts} + $jira[0]' > data.json
+
       - name: Commit and Push
         run: |
           git config --global user.name "JiraDataBot"
