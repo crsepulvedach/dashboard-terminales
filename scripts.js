@@ -568,13 +568,19 @@ const state = {
           item.key.toLowerCase().includes(state.searchQuery) ||
           item.summary.toLowerCase().includes(state.searchQuery) ||
           item.assignee.toLowerCase().includes(state.searchQuery);
-            console.log(
-              "Filtro:",
-              state.tableStatus,
-              "Estado ticket:",
-              item.status
-            );
+        const result =
+            matchTeam &&
+            matchStrategic &&
+            matchStatus &&
+            matchSearch;
 
+      if (state.tableStatus === 'Finalizado' && result) {
+          console.log(
+            'VISIBLE:',
+            item.key,
+            item.status
+            );
+        }    
         return matchTeam && matchStrategic && matchStatus && matchSearch;
       });
 
