@@ -254,7 +254,7 @@ const state = {
       updatePriorityChart(filteredItems);
 
       // 11. Mesa de Destrabe Cards
-      BlockerCards(blockerItems);
+      renderBlockerCards(blockerItems);
 
       // 12. Tabla de Inventario
       InventoryTable();
