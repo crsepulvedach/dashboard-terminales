@@ -141,7 +141,7 @@ const state = {
         document.getElementById('alertDesc').innerText = `BURC-771 ("Lanzamiento Xiaomi Note 17") acumula 74 días detenido en Supply Chain por acuerdos comerciales.`;
       }
 
-      // 2. Renderizar KPIs Superiores
+      // 2. izar KPIs Superiores
       document.getElementById('kpi-container').innerHTML = `
         <div class="kpi-card blue">
           <div class="kpi-top"><span class="kpi-title">Ingreso (Throughput In)</span><span class="kpi-icon">📥</span></div>
@@ -254,10 +254,10 @@ const state = {
       updatePriorityChart(filteredItems);
 
       // 11. Mesa de Destrabe Cards
-      renderBlockerCards(blockerItems);
+      BlockerCards(blockerItems);
 
       // 12. Tabla de Inventario
-      renderInventoryTable();
+      InventoryTable();
     }
 
     function updateMatrixTable(modeKey) {
@@ -568,12 +568,20 @@ const state = {
           item.key.toLowerCase().includes(state.searchQuery) ||
           item.summary.toLowerCase().includes(state.searchQuery) ||
           item.assignee.toLowerCase().includes(state.searchQuery);
+            console.log(
+              "Filtro:",
+              state.tableStatus,
+              "Estado ticket:",
+              item.status
+            );
 
         return matchTeam && matchStrategic && matchStatus && matchSearch;
       });
 
       // Botones de filtro de estado
       const statuses = ['TODOS', ...new Set(rawInventoryItems.map(i => i.status))];
+      console.log("Estados encontrados:", statuses);
+          
       let btnHtml = '';
       statuses.forEach((st) => {
         const activeCls = state.tableStatus === st ? 'active' : '';
