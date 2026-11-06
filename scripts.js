@@ -257,7 +257,7 @@ const state = {
       renderBlockerCards(blockerItems);
 
       // 12. Tabla de Inventario
-      InventoryTable();
+      renderInventoryTable();
     }
 
     function updateMatrixTable(modeKey) {
