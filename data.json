@@ -1,7 +1,400 @@
 {
-  "lastUpdate": "2026-11-09T05:52:36.830Z",
-  "totalIssues": 680,
+  "lastUpdate": "2026-11-09T15:54:32.216Z",
+  "totalIssues": 689,
   "issues": [
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8380048",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8380048",
+      "key": "BURC-997",
+      "fields": {
+        "summary": "Rentabilidad Bayback",
+        "assignee": null,
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T12:14:32.426-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "Planning"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8379278",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8379278",
+      "key": "BURC-996",
+      "fields": {
+        "summary": "Dinámica CPFR PE",
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=5f43ce7e9a01310041ea77bc",
+          "accountId": "5f43ce7e9a01310041ea77bc",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png"
+          },
+          "displayName": "Romina Barreda",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T11:09:11.530-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": []
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8378936",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8378936",
+      "key": "BURC-995",
+      "fields": {
+        "summary": "Coordinación SIM - PE",
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A0665a780-ecb8-4699-862d-967b70ea8278",
+          "accountId": "712020:0665a780-ecb8-4699-862d-967b70ea8278",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png"
+          },
+          "displayName": "Karla Haro Muñico",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T10:42:39.740-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "Planning"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8378912",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8378912",
+      "key": "BURC-994",
+      "fields": {
+        "summary": "eSIM Inventariada",
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A0665a780-ecb8-4699-862d-967b70ea8278",
+          "accountId": "712020:0665a780-ecb8-4699-862d-967b70ea8278",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png"
+          },
+          "displayName": "Karla Haro Muñico",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T10:41:13.500-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "Planning"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8378882",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8378882",
+      "key": "BURC-993",
+      "fields": {
+        "summary": "Packaging Apple PE",
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A0665a780-ecb8-4699-862d-967b70ea8278",
+          "accountId": "712020:0665a780-ecb8-4699-862d-967b70ea8278",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png"
+          },
+          "displayName": "Karla Haro Muñico",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T10:39:01.424-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "Planning"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8378873",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8378873",
+      "key": "BURC-992",
+      "fields": {
+        "summary": "Packaging Apple CL",
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A0665a780-ecb8-4699-862d-967b70ea8278",
+          "accountId": "712020:0665a780-ecb8-4699-862d-967b70ea8278",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png"
+          },
+          "displayName": "Karla Haro Muñico",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T10:38:05.584-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "Planning"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8378864",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8378864",
+      "key": "BURC-991",
+      "fields": {
+        "summary": "Procesos IA",
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A0665a780-ecb8-4699-862d-967b70ea8278",
+          "accountId": "712020:0665a780-ecb8-4699-862d-967b70ea8278",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png"
+          },
+          "displayName": "Karla Haro Muñico",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T10:37:15.385-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "Planning"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8378850",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8378850",
+      "key": "BURC-990",
+      "fields": {
+        "summary": "Alinear Definición Bundles",
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A0665a780-ecb8-4699-862d-967b70ea8278",
+          "accountId": "712020:0665a780-ecb8-4699-862d-967b70ea8278",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/KM-2.png"
+          },
+          "displayName": "Karla Haro Muñico",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T10:36:19.514-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "Planning"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8378594",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8378594",
+      "key": "BURC-988",
+      "fields": {
+        "summary": "Generar Flujo ",
+        "assignee": null,
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T10:07:15.167-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": []
+      }
+    },
     {
       "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
       "id": "8367930",
@@ -31,17 +424,17 @@
         },
         "created": "2026-11-02T17:31:11.884-0300",
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
-          "description": "",
-          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "En Curso",
-          "id": "12207",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/10201",
+          "description": "This was auto-generated by JIRA Service Desk during workflow import",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/status_generic.gif",
+          "name": "Finalizado",
+          "id": "10201",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
@@ -1339,11 +1732,11 @@
         },
         "created": "2026-10-05T11:27:32.163-0300",
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/13021",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "En Curso",
-          "id": "12207",
+          "name": "Implementado",
+          "id": "13021",
           "statusCategory": {
             "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
             "id": 4,
@@ -1387,11 +1780,11 @@
         },
         "created": "2026-10-05T11:09:31.069-0300",
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/14255",
-          "description": "Requerimiento en análisis",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
+          "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "En Análisis",
-          "id": "14255",
+          "name": "En Curso",
+          "id": "12207",
           "statusCategory": {
             "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
             "id": 4,
@@ -1482,11 +1875,11 @@
         },
         "created": "2026-10-05T11:03:11.645-0300",
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/14255",
-          "description": "Requerimiento en análisis",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/13021",
+          "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "En Análisis",
-          "id": "14255",
+          "name": "Implementado",
+          "id": "13021",
           "statusCategory": {
             "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
             "id": 4,
@@ -1577,17 +1970,17 @@
         },
         "created": "2026-10-05T11:01:52.924-0300",
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
-          "description": "",
-          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "En Curso",
-          "id": "12207",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/10201",
+          "description": "This was auto-generated by JIRA Service Desk during workflow import",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/status_generic.gif",
+          "name": "Finalizado",
+          "id": "10201",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
@@ -1602,7 +1995,7 @@
       "self": "https://tdentel.atlassian.net/rest/api/3/issue/8309000",
       "key": "BURC-951",
       "fields": {
-        "summary": "Coordinación SIM: Definir inputs de información y responsable CL/PE",
+        "summary": "Coordinación SIM: Definir inputs de información y responsable CL",
         "assignee": {
           "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A0665a780-ecb8-4699-862d-967b70ea8278",
           "accountId": "712020:0665a780-ecb8-4699-862d-967b70ea8278",
@@ -1625,17 +2018,17 @@
         },
         "created": "2026-10-05T10:59:56.187-0300",
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
-          "description": "",
-          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/10201",
+          "description": "This was auto-generated by JIRA Service Desk during workflow import",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/status_generic.gif",
+          "name": "Finalizado",
+          "id": "10201",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
