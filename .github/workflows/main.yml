@@ -1,7 +1,7 @@
 name: Update Jira Data Review
 on:
   schedule:
-    - cron: '0 * * * *' # Se ejecuta cada hora automáticamente
+    - cron: '0 11 * * *' # Se ejecuta cada día automáticamente
   workflow_dispatch: # Permite ejecutarlo manualmente con un botón
 
 jobs:
