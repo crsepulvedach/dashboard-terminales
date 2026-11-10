@@ -1,7 +1,261 @@
 {
-  "lastUpdate": "2026-11-09T15:54:32.216Z",
-  "totalIssues": 689,
+  "lastUpdate": "2026-11-10T18:34:42.218Z",
+  "totalIssues": 696,
   "issues": [
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8382411",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8382411",
+      "key": "BURC-1004",
+      "fields": {
+        "summary": "Campaña Navidad 2026",
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=5f43ce7e9a01310041ea77bc",
+          "accountId": "5f43ce7e9a01310041ea77bc",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png"
+          },
+          "displayName": "Romina Barreda",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T21:11:26.283-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "Planning"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8382369",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8382369",
+      "key": "BURC-1003",
+      "fields": {
+        "summary": "Despliegue (Ciclo de Vida)",
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=5f43ce7e9a01310041ea77bc",
+          "accountId": "5f43ce7e9a01310041ea77bc",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/RB-3.png"
+          },
+          "displayName": "Romina Barreda",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T20:38:37.131-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "Planning"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8380440",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8380440",
+      "key": "BURC-1002",
+      "fields": {
+        "summary": "Matriz de Riesgos y Mitigación (Logística/Producto/Canal)",
+        "assignee": null,
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T13:26:15.721-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": []
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8380439",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8380439",
+      "key": "BURC-1001",
+      "fields": {
+        "summary": "Definición de protocolo de exhibición y entrega en PDV",
+        "assignee": null,
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T13:26:14.768-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": []
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8380438",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8380438",
+      "key": "BURC-1000",
+      "fields": {
+        "summary": "Ajuste de sistemas de registro y captura de datos (IMEI/Serial)",
+        "assignee": null,
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T13:26:14.173-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": []
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8380437",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8380437",
+      "key": "BURC-999",
+      "fields": {
+        "summary": "Definición de procesos logísticos para nuevo packaging",
+        "assignee": null,
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T13:26:13.058-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": []
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8380329",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8380329",
+      "key": "BURC-998",
+      "fields": {
+        "summary": "Packaging Apple",
+        "assignee": null,
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "created": "2026-11-09T12:58:28.881-0300",
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": []
+      }
+    },
     {
       "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
       "id": "8380048",
