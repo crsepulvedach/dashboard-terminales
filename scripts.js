@@ -128,6 +128,17 @@ const state = {
         return matchTeam && matchStrategic;
       });
 
+      console.log(
+        "applyGlobalFilters",
+        {
+          raw: rawInventoryItems.length,
+          filtered: filteredItems.length,
+          team: state.selectedTeam,
+          strategicOnly: state.strategicOnly,
+          tableStatus: state.tableStatus
+        }
+      ); 
+
       // 1. Alertas y Badges de Bloqueos
       const blockerItems = filteredItems.filter(i => i.status === 'Detenido');
       document.getElementById('alertCountBadge').innerText = blockerItems.length;
