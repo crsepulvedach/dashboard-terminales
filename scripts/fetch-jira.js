@@ -22,9 +22,9 @@ async function fetchAllIssues() {
       `&fields=summary,status,assignee,priority,labels,created` +
       `&maxResults=100`;
 
-    if (nextPageToken) {
-      url += `&nextPageToken=${encodeURIComponent(nextPageToken)}`;
-    }
+  //  if (nextPageToken) {
+  //    url += `&nextPageToken=${encodeURIComponent(nextPageToken)}`;
+  //  }
 
     console.log(`Leyendo página ${page}...`);
 
@@ -45,6 +45,7 @@ async function fetchAllIssues() {
     const data = await response.json();
     console.log(url);
     console.log(JSON.stringify(data, null, 2));
+    
     process.exit(0);
 
     const pageIssues = data.issues || [];
