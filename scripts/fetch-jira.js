@@ -46,11 +46,17 @@ async function fetchAllIssues() {
 
     const pageIssues = data.issues || [];
 
+    console.log("isLast:", data.isLast);
+    console.log("issues página:", data.issues?.length);
+    console.log("nextPageToken:", data.nextPageToken);
     console.log(
       `Página ${page}: ${pageIssues.length} tickets`
     );
 
     allIssues.push(...pageIssues);
+
+    console.log("acumulado:", allIssues.length);
+
 
     if (data.isLast === true) {
       break;
