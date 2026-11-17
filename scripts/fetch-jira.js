@@ -44,17 +44,17 @@ async function fetchAllIssues() {
 
     const data = await response.json();
 
-    console.log(JSON.stringify(data, null, 2));
-    process.exit(0);
+    //console.log(JSON.stringify(data, null, 2));
+    //process.exit(0);
 
     const pageIssues = data.issues || [];
 
-    console.log("isLast:", data.isLast);
+ /*    console.log("isLast:", data.isLast);
     console.log("issues página:", data.issues?.length);
     console.log("nextPageToken:", data.nextPageToken);
     console.log(
       `Página ${page}: ${pageIssues.length} tickets`
-    );
+    ); */
 
     allIssues.push(...pageIssues);
 
