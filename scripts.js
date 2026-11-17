@@ -729,6 +729,12 @@ const state = {
         .then(response => response.json())
         .then(data => {
 
+          if (data.lastUpdate) {
+            const fecha = new Date(data.lastUpdate);
+            document.getElementById('last-update').innerHTML =
+              `🕒 Última sincronización Jira: ${fecha.toLocaleString('es-CL')}`;
+          }
+
           rawInventoryItems = (data.issues || []).map(issue => {
 
             const labels = issue.fields.labels || [];
