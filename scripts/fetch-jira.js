@@ -58,7 +58,7 @@ async function fetchAllIssues() {
 
     allIssues.push(...pageIssues);
 
-    console.log("acumulado:", allIssues.length);
+    // console.log("acumulado:", allIssues.length);
 
 
     if (data.isLast === true) {
@@ -72,7 +72,7 @@ async function fetchAllIssues() {
       break;
     }
 
-    console.log(
+/*     console.log(
       "token:",
       data.nextPageToken?.substring(0, 50)
     );
@@ -82,7 +82,7 @@ async function fetchAllIssues() {
       pageIssues.length,
       "isLast:",
       data.isLast
-    );
+    ); */
 
     if (seenTokens.has(data.nextPageToken)) {
       console.warn("Token ya visto. Terminando extracción.");
