@@ -43,7 +43,7 @@ async function fetchAllIssues() {
     }
 
     const data = await response.json();
-
+    console.log(url);
     console.log(JSON.stringify(data, null, 2));
     process.exit(0);
 
