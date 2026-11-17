@@ -13,6 +13,7 @@ async function fetchAllIssues() {
   let allIssues = [];
   let nextPageToken = null;
   let page = 1;
+  let seenTokens = new Set();
 
   while (true) {
 
@@ -22,9 +23,9 @@ async function fetchAllIssues() {
       `&fields=summary,status,assignee,priority,labels,created` +
       `&maxResults=100`;
 
-  //  if (nextPageToken) {
-  //    url += `&nextPageToken=${encodeURIComponent(nextPageToken)}`;
-  //  }
+    if (nextPageToken) {
+      url += `&nextPageToken=${encodeURIComponent(nextPageToken)}`;
+    }
 
     console.log(`Leyendo página ${page}...`);
 
@@ -71,9 +72,29 @@ async function fetchAllIssues() {
       break;
     }
 
+    console.log(
+      "token:",
+      data.nextPageToken?.substring(0, 50)
+    );
+
+    console.log(
+      "issues página:",
+      pageIssues.length,
+      "isLast:",
+      data.isLast
+    );
+
+    if (seenTokens.has(data.nextPageToken)) {
+      console.warn("Token ya visto. Terminando extracción.");
+      break;
+    }
+
+    seenTokens.add(data.nextPageToken);
     nextPageToken = data.nextPageToken;
     page++;
   }
+
+  
 
   return allIssues;
 }
