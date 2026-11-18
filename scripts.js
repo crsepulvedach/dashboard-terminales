@@ -119,6 +119,15 @@ const state = {
       }
     };
 
+    function getPeriod(dateString) {
+      if (!dateString) return null;
+
+      const date = new Date(dateString);
+
+      return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+    }
+
+
     function applyGlobalFilters() {
       const modeKey = state.strategicOnly ? 'plan' : 'all';
       const curData = teamAggregates[state.selectedTeam][modeKey];
