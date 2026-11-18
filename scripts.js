@@ -8,6 +8,7 @@ const state = {
 
     /*const rawInventoryItems = [];*/
     let rawInventoryItems = [];
+    let availablePeriods = [];
 
     const teamAggregates = {
       all: {
@@ -800,7 +801,7 @@ const state = {
           console.log('Tickets Jira:', rawInventoryItems.length);
           
           console.log('Periodo seleccionado:', state.selectedPeriod);
-          const availablePeriods = [
+          availablePeriods = [
             ...new Set(
               rawInventoryItems.flatMap(item => [
                 item.createdPeriod,
@@ -829,7 +830,12 @@ const state = {
               availablePeriods[1],
               calculatePeriodMetrics(availablePeriods[1])
             );
-          }
+          };
+
+          console.log(
+            'Total periodos disponibles:',
+            availablePeriods.length
+          );
 
           console.log('Períodos disponibles:', availablePeriods);
 
