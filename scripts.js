@@ -168,6 +168,17 @@ const state = {
       return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
     }
 
+    function setPeriodFilter(period) {
+
+      state.selectedPeriod = period;
+
+      console.log(
+        'Periodo seleccionado:',
+        state.selectedPeriod
+      );
+
+    }
+
 
     function applyGlobalFilters() {
       const modeKey = state.strategicOnly ? 'plan' : 'all';
@@ -740,13 +751,18 @@ const state = {
       if (!container) return;
 
       let html = `
-        <option value="all">Todos</option>
+        <option value="all"
+          ${state.selectedPeriod === 'all' ? 'selected' : ''}>
+          Todos
+        </option>
       `;
 
       availablePeriods.forEach(period => {
 
         html += `
-          <option value="${period}">
+          <option
+            value="${period}"
+            ${state.selectedPeriod === period ? 'selected' : ''}>
             ${formatPeriod(period)}
           </option>
         `;
@@ -754,7 +770,6 @@ const state = {
       });
 
       container.innerHTML = html;
-
     }
 
     function switchTab(tabId) {
