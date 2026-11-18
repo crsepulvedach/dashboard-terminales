@@ -766,13 +766,19 @@ const state = {
               assignee:
                 issue.fields.assignee?.displayName || 'Sin Asignar',
 
+              created: issue.fields.created,
+              resolutiondate: issue.fields.resolutiondate,
+
+              createdPeriod: getPeriod(issue.fields.created),
+              resolvedPeriod: getPeriod(issue.fields.resolutiondate),
+
               ageDays: Math.floor(
                 (new Date() - new Date(issue.fields.created))
                 / (1000 * 60 * 60 * 24)
               )
             };
           });
-
+          console.log(rawInventoryItems[0]);
           console.log('Tickets Jira:', rawInventoryItems.length);
 
           /* if (data.issues && data.issues.length > 0) {
