@@ -816,6 +816,21 @@ const state = {
             calculatePeriodMetrics(latestPeriod)
           );
 
+          state.selectedPeriod = availablePeriods[0];
+          console.log(
+            'Periodo activo:',
+            state.selectedPeriod,
+            calculatePeriodMetrics(state.selectedPeriod)
+          );
+
+          if (availablePeriods.length > 1) {
+            console.log(
+              'Periodo anterior:',
+              availablePeriods[1],
+              calculatePeriodMetrics(availablePeriods[1])
+            );
+          }
+
           console.log('Períodos disponibles:', availablePeriods);
 
           /* if (data.issues && data.issues.length > 0) {
