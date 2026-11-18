@@ -798,13 +798,7 @@ const state = {
           });
           console.log(rawInventoryItems[0]);
           console.log('Tickets Jira:', rawInventoryItems.length);
-          const latestPeriod = availablePeriods[0];
-          console.log(
-            'Metricas periodo',
-            latestPeriod,
-            calculatePeriodMetrics(latestPeriod)
-          );
-
+          
           console.log('Periodo seleccionado:', state.selectedPeriod);
           const availablePeriods = [
             ...new Set(
@@ -814,6 +808,13 @@ const state = {
               ]).filter(Boolean)
             )
           ].sort().reverse();
+          
+          const latestPeriod = availablePeriods[0];
+          console.log(
+            'Metricas periodo',
+            latestPeriod,
+            calculatePeriodMetrics(latestPeriod)
+          );
 
           console.log('Períodos disponibles:', availablePeriods);
 
