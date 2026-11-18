@@ -20,7 +20,7 @@ async function fetchAllIssues() {
     let url =
       `https://${domain}.atlassian.net/rest/api/3/search/jql` +
       `?jql=project%3DBURC%20ORDER%20BY%20created%20DESC` +
-      `&fields=summary,status,assignee,priority,labels,created` +
+      `&fields=summary,status,assignee,priority,labels,created,resolutiondate` +
       `&maxResults=100`;
 
     if (nextPageToken) {
