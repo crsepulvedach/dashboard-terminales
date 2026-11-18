@@ -120,6 +120,23 @@ const state = {
       }
     };
 
+    function calculatePeriodMetrics(period) {
+
+      const created = rawInventoryItems.filter(
+        item => item.createdPeriod === period
+      ).length;
+
+      const closed = rawInventoryItems.filter(
+        item => item.resolvedPeriod === period
+      ).length;
+
+      return {
+        created,
+        closed,
+        balance: created - closed
+      };
+    }
+
     function getPeriod(dateString) {
       if (!dateString) return null;
 
@@ -781,6 +798,13 @@ const state = {
           });
           console.log(rawInventoryItems[0]);
           console.log('Tickets Jira:', rawInventoryItems.length);
+          const latestPeriod = availablePeriods[0];
+          console.log(
+            'Metricas periodo',
+            latestPeriod,
+            calculatePeriodMetrics(latestPeriod)
+          );
+
           console.log('Periodo seleccionado:', state.selectedPeriod);
           const availablePeriods = [
             ...new Set(
