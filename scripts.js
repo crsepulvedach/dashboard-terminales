@@ -780,6 +780,16 @@ const state = {
           });
           console.log(rawInventoryItems[0]);
           console.log('Tickets Jira:', rawInventoryItems.length);
+          const availablePeriods = [
+            ...new Set(
+              rawInventoryItems.flatMap(item => [
+                item.createdPeriod,
+                item.resolvedPeriod
+              ]).filter(Boolean)
+            )
+          ].sort().reverse();
+
+          console.log('Períodos disponibles:', availablePeriods);
 
           /* if (data.issues && data.issues.length > 0) {
               const ultimaFecha = data.issues[0].fields.created;
