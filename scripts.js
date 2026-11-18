@@ -2,7 +2,8 @@ const state = {
       selectedTeam: 'all',  // 'all' | 'chile' | 'peru' | 'supply'
       strategicOnly: false, // true (solo Planning) | false (visión completa)
       tableStatus: 'TODOS', // 'TODOS' | 'En Curso' | 'En Análisis' | 'POR HACER' | 'Implementado' | 'Detenido'
-      searchQuery: ''
+      searchQuery: '',
+      selectedPeriod: 'all'
     };
 
     /*const rawInventoryItems = [];*/
@@ -780,6 +781,7 @@ const state = {
           });
           console.log(rawInventoryItems[0]);
           console.log('Tickets Jira:', rawInventoryItems.length);
+          console.log('Periodo seleccionado:', state.selectedPeriod);
           const availablePeriods = [
             ...new Set(
               rawInventoryItems.flatMap(item => [
