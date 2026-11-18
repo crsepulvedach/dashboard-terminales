@@ -121,6 +121,28 @@ const state = {
       }
     };
 
+    function formatPeriod(period) {
+
+      const [year, month] = period.split('-');
+
+      const months = {
+        '01': 'Enero',
+        '02': 'Febrero',
+        '03': 'Marzo',
+        '04': 'Abril',
+        '05': 'Mayo',
+        '06': 'Junio',
+        '07': 'Julio',
+        '08': 'Agosto',
+        '09': 'Septiembre',
+        '10': 'Octubre',
+        '11': 'Noviembre',
+        '12': 'Diciembre'
+      };
+
+      return `${months[month]} ${year}`;
+    }
+
     function calculatePeriodMetrics(period) {
 
       const created = rawInventoryItems.filter(
@@ -710,6 +732,31 @@ const state = {
       renderInventoryTable();
     }
 
+    function renderPeriodSelector() {
+
+      const container =
+        document.getElementById('period-selector-container');
+
+      if (!container) return;
+
+      let html = `
+        <option value="all">Todos</option>
+      `;
+
+      availablePeriods.forEach(period => {
+
+        html += `
+          <option value="${period}">
+            ${formatPeriod(period)}
+          </option>
+        `;
+
+      });
+
+      container.innerHTML = html;
+
+    }
+
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
       document.querySelectorAll('.tab-item').forEach(btn => btn.classList.remove('active'));
@@ -836,6 +883,8 @@ const state = {
             'Total periodos disponibles:',
             availablePeriods.length
           );
+
+          renderPeriodSelector();
 
           console.log('Períodos disponibles:', availablePeriods);
 
