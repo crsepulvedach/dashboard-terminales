@@ -279,11 +279,19 @@ const state = {
         const metrics =
           calculatePeriodMetrics(state.selectedPeriod);
 
+        const carryOver =
+          calculateCarryOver(state.selectedPeriod);
+
+        const wip =
+          carryOver +
+          metrics.created -
+          metrics.closed;
+
         balance =
           metrics.created - metrics.closed;
 
-        carryOver =
-          curData.wip - balance;
+/*         carryOver =
+          curData.wip - balance; */
       }
       const filteredItems = rawInventoryItems.filter(item => {
         const matchTeam = (state.selectedTeam === 'all') || (item.team === state.selectedTeam);
