@@ -227,6 +227,52 @@ const state = {
       );
     }
 
+    function getPeriodEnd(period) {
+
+      const [year, month] = period.split('-');
+
+      return new Date(
+        Number(year),
+        Number(month),
+        0,
+        23,
+        59,
+        59,
+        999
+      );
+
+    }    
+
+    function existedInPeriod(item, period) {
+
+      if (period === 'all') {
+        return true;
+      }
+
+      const periodStart = getPeriodStart(period);
+      const periodEnd = getPeriodEnd(period);
+
+      const createdDate = new Date(item.created);
+
+      const resolvedDate =
+        item.resolutiondate
+          ? new Date(item.resolutiondate)
+          : null;
+
+      const existedBeforePeriodEnd =
+        createdDate <= periodEnd;
+
+      const survivedIntoPeriod =
+        !resolvedDate ||
+        resolvedDate >= periodStart;
+
+      return (
+        existedBeforePeriodEnd &&
+        survivedIntoPeriod
+      );
+
+    }
+
     function setPeriodFilter(period) {
 
       state.selectedPeriod = period;
