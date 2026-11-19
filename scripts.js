@@ -239,6 +239,13 @@ const state = {
         )
       );
 
+      console.log({
+        team: state.selectedTeam,
+        strategicOnly: state.strategicOnly,
+        period: state.selectedPeriod,
+        metrics: calculatePeriodMetrics(state.selectedPeriod)
+      });
+
       console.log(
         rawInventoryItems.filter(
           i =>
