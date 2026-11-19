@@ -183,6 +183,19 @@ const state = {
     function applyGlobalFilters() {
       const modeKey = state.strategicOnly ? 'plan' : 'all';
       const curData = teamAggregates[state.selectedTeam][modeKey];
+      let balance = null;
+      let carryOver = null;
+
+      if (state.selectedPeriod !== 'all') {
+        const metrics =
+          calculatePeriodMetrics(state.selectedPeriod);
+
+        balance =
+          metrics.created - metrics.closed;
+
+        carryOver =
+          curData.wip - balance;
+      }
       const filteredItems = rawInventoryItems.filter(item => {
         const matchTeam = (state.selectedTeam === 'all') || (item.team === state.selectedTeam);
         const matchStrategic = !state.strategicOnly || item.isPlanning;
@@ -226,9 +239,23 @@ const state = {
           <div class="kpi-meta"><span class="tag-trend good">${curData.rate} Completitud</span> Tasa de cierre del periodo</div>
         </div>
         <div class="kpi-card amber">
-          <div class="kpi-top"><span class="kpi-title">WIP Activo en Ejecución</span><span class="kpi-icon">⚡</span></div>
+          <div class="kpi-top">
+            <span class="kpi-title">WIP Activo en Ejecución</span>
+            <span class="kpi-icon">⚡</span></div>
           <div class="kpi-value">${curData.wip}</div>
-          <div class="kpi-meta"><span class="tag-trend danger">Activo</span> ${state.strategicOnly ? 'Iniciativas Planning' : 'Tareas en curso'}</div>
+          <div class="kpi-meta">
+            ${
+              state.selectedPeriod === 'all'
+                ? `
+                  <span class="tag-trend danger">Activo</span>
+                  ${state.strategicOnly ? 'Iniciativas Planning' : 'Tareas en curso'}
+                `
+                : `
+                  <div>Carry Over: <strong>${carryOver}</strong></div>
+                  <div>Balance: <strong>${balance >= 0 ? '+' : ''}${balance}</strong></div>
+                `
+            }
+          </div>
         </div>
         <div class="kpi-card rose">
           <div class="kpi-top"><span class="kpi-title">Trabajo Bloqueado</span><span class="kpi-icon">⛔</span></div>
@@ -508,6 +535,7 @@ const state = {
       document.getElementById('wip-display').innerText = wipVal + ' tareas';
       const modeKey = state.strategicOnly ? 'plan' : 'all';
       const curData = teamAggregates[state.selectedTeam][modeKey];
+
       const thPerDay = Math.max(curData.out / 31, 0.05);
       const baseWip = curData.wip;
       const currentLeadTime = baseWip / thPerDay;
