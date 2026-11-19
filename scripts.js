@@ -931,6 +931,20 @@ const state = {
 
           console.log('Períodos disponibles:', availablePeriods);
 
+          console.log(
+            calculatePeriodMetrics(
+              state.selectedPeriod
+            )
+          );
+
+          console.log(
+            rawInventoryItems.filter(
+              i =>
+                i.team === 'chile' &&
+                i.createdPeriod === state.selectedPeriod
+            ).length
+          );
+
           /* if (data.issues && data.issues.length > 0) {
               const ultimaFecha = data.issues[0].fields.created;
               const fechaFormateada = new Date(
