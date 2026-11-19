@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-11-19T16:07:53.895Z",
+  "lastUpdate": "2026-11-19T18:09:26.179Z",
   "totalIssues": 709,
   "issues": [
     {
@@ -45,7 +45,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -91,7 +93,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
