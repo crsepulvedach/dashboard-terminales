@@ -879,7 +879,7 @@ const state = {
 
     function renderInventoryTable() {
       //const filtered = rawInventoryItems.filter(item => {
-      const filtered = getFilteredItems().filter(item => {  
+      /* const filtered = getFilteredItems().filter(item => {  
         const matchTeam = (state.selectedTeam === 'all') || (item.team === state.selectedTeam);
         const matchStrategic = !state.strategicOnly || item.isPlanning;
         const matchStatus = (state.tableStatus === 'TODOS') || (item.status === state.tableStatus);
@@ -894,6 +894,25 @@ const state = {
             matchSearch;
          
         return matchTeam && matchStrategic && matchStatus && matchSearch;
+      }); */
+
+      const filtered = getFilteredItems().filter(item => {
+
+        const matchStatus =
+          state.tableStatus === 'TODOS' ||
+          item.status === state.tableStatus;
+
+        const matchSearch =
+          !state.searchQuery ||
+          item.key.toLowerCase().includes(state.searchQuery) ||
+          item.summary.toLowerCase().includes(state.searchQuery) ||
+          item.assignee.toLowerCase().includes(state.searchQuery);
+
+        return (
+          matchStatus &&
+          matchSearch
+        );
+
       });
 
       // Botones de filtro de estado
@@ -948,7 +967,7 @@ const state = {
       });
       console.log(
         'renderInventoryTable',
-        rawInventoryItems.length
+        filtered.length
       );
       document.getElementById('inventory-tbody').innerHTML = html;
       document.getElementById('inventory-subtitle').innerText = `Mostrando ${filtered.length} de ${rawInventoryItems.length} requerimientos activos`;
