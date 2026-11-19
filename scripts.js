@@ -878,7 +878,8 @@ const state = {
     }
 
     function renderInventoryTable() {
-      const filtered = rawInventoryItems.filter(item => {
+      //const filtered = rawInventoryItems.filter(item => {
+      const filtered = getFilteredItems().filter(item => {  
         const matchTeam = (state.selectedTeam === 'all') || (item.team === state.selectedTeam);
         const matchStrategic = !state.strategicOnly || item.isPlanning;
         const matchStatus = (state.tableStatus === 'TODOS') || (item.status === state.tableStatus);
@@ -945,6 +946,10 @@ const state = {
           </tr>
         `;
       });
+      console.log(
+        'renderInventoryTable',
+        rawInventoryItems.length
+      );
       document.getElementById('inventory-tbody').innerHTML = html;
       document.getElementById('inventory-subtitle').innerText = `Mostrando ${filtered.length} de ${rawInventoryItems.length} requerimientos activos`;
     }
