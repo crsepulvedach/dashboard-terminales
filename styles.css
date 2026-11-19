@@ -124,6 +124,7 @@ input:checked + .slider-toggle:before { transform: translateX(20px); }
 .tag-trend { font-weight: 600; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.72rem; }
 .tag-trend.good { background: rgba(52, 211, 153, 0.15); color: #34d399; }
 .tag-trend.warn { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+.tag-trend.wip { background: rgba(28, 60, 202, 0.15); color: #2a52b8; }
 .tag-trend.danger { background: rgba(251, 113, 133, 0.15); color: #fb7185; }
 
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
