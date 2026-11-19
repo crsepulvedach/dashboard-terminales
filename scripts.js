@@ -144,12 +144,18 @@ const state = {
     }
 
     function calculatePeriodMetrics(period) {
+      const teamItems =
+        state.selectedTeam === 'all'
+          ? rawInventoryItems
+          : rawInventoryItems.filter(
+              item => item.team === state.selectedTeam
+            );
 
-      const created = rawInventoryItems.filter(
+      const created = teamItems.filter(
         item => item.createdPeriod === period
       ).length;
 
-      const closed = rawInventoryItems.filter(
+      const closed = teamItems.filter(
         item => item.resolvedPeriod === period
       ).length;
 
