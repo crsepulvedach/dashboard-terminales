@@ -381,7 +381,7 @@ const state = {
             ${
               state.selectedPeriod === 'all'
                 ? `
-                  <span class="tag-trend danger">Activo</span>
+                  <span class="tag-trend wip">Activo</span>
                   ${state.strategicOnly ? 'Iniciativas Planning' : 'Tareas en curso'}
                 `
                 : `
