@@ -219,6 +219,20 @@ const state = {
         }
       ); 
 
+      console.log(
+        calculatePeriodMetrics(
+          state.selectedPeriod
+        )
+      );
+
+      console.log(
+        rawInventoryItems.filter(
+          i =>
+            i.team === 'chile' &&
+            i.createdPeriod === state.selectedPeriod
+        ).length
+      );
+
       // 1. Alertas y Badges de Bloqueos
       const blockerItems = filteredItems.filter(i => i.status === 'Detenido');
       document.getElementById('alertCountBadge').innerText = blockerItems.length;
