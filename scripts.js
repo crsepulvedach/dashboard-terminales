@@ -203,6 +203,19 @@ const state = {
     function applyGlobalFilters() {
       const modeKey = state.strategicOnly ? 'plan' : 'all';
       const curData = teamAggregates[state.selectedTeam][modeKey];
+      const periodMetrics =
+        state.selectedPeriod === 'all'
+          ? null
+          : calculatePeriodMetrics(state.selectedPeriod);
+      const throughputIn =
+        periodMetrics
+          ? periodMetrics.created
+          : curData.in;
+
+      const throughputOut =
+        periodMetrics
+          ? periodMetrics.closed
+          : curData.out;
       let balance = null;
       let carryOver = null;
 
@@ -271,12 +284,12 @@ const state = {
       document.getElementById('kpi-container').innerHTML = `
         <div class="kpi-card blue">
           <div class="kpi-top"><span class="kpi-title">Ingreso (Throughput In)</span><span class="kpi-icon">📥</span></div>
-          <div class="kpi-value">${curData.in}</div>
+          <div class="kpi-value">${throughputIn}</div>
           <div class="kpi-meta"><span class="tag-trend warn">Demanda activa</span> Ingresos del periodo en análisis</div>
         </div>
         <div class="kpi-card emerald">
           <div class="kpi-top"><span class="kpi-title">Entregas (Throughput Out)</span><span class="kpi-icon">🚀</span></div>
-          <div class="kpi-value">${curData.out}</div>
+          <div class="kpi-value">${throughputOut}</div>
           <div class="kpi-meta"><span class="tag-trend good">${curData.rate} Completitud</span> Tasa de cierre del periodo</div>
         </div>
         <div class="kpi-card amber">
