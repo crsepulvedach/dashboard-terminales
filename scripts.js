@@ -376,7 +376,7 @@ const state = {
                 ? curData.wip
                 : wip
             }
-  </div>
+          </div>
           <div class="kpi-meta">
             ${
               state.selectedPeriod === 'all'
@@ -385,7 +385,7 @@ const state = {
                   ${state.strategicOnly ? 'Iniciativas Planning' : 'Tareas en curso'}
                 `
                 : `
-                  <div>Carry Over: <strong>${carryOver}</strong></div>
+                  <span class="tag-trend wip">Carry Over: <strong>${carryOver}</strong></span>
                   <div>Balance: <strong>${balance >= 0 ? '+' : ''}${balance}</strong></div>
                 `
             }
