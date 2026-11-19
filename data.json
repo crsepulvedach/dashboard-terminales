@@ -1,6 +1,6 @@
 {
-  "lastUpdate": "2026-11-19T18:09:26.179Z",
-  "totalIssues": 709,
+  "lastUpdate": "2026-11-19T18:15:24.909Z",
+  "totalIssues": 708,
   "issues": [
     {
       "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
@@ -764,39 +764,6 @@
     },
     {
       "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
-      "id": "8388701",
-      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8388701",
-      "key": "BURC-1007",
-      "fields": {
-        "summary": "primera subtarea",
-        "created": "2026-11-12T12:30:46.847-0300",
-        "resolutiondate": null,
-        "assignee": null,
-        "priority": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
-          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
-          "name": "High",
-          "id": "2"
-        },
-        "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
-          "description": "",
-          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
-          "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
-          }
-        },
-        "labels": []
-      }
-    },
-    {
-      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
       "id": "8388697",
       "self": "https://tdentel.atlassian.net/rest/api/3/issue/8388697",
       "key": "BURC-1006",
@@ -1340,7 +1307,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
