@@ -188,6 +188,17 @@ const state = {
       return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
     }
 
+    function getPeriodStart(period) {
+
+      const [year, month] = period.split('-');
+
+      return new Date(
+        Number(year),
+        Number(month) - 1,
+        1
+      );
+    }
+
     function setPeriodFilter(period) {
 
       state.selectedPeriod = period;
@@ -199,6 +210,51 @@ const state = {
 
     }
 
+    function calculateCarryOver(period) {
+
+      const periodStart =
+        getPeriodStart(period);
+
+      const filteredItems =
+        rawInventoryItems.filter(item => {
+
+          const matchTeam =
+            state.selectedTeam === 'all' ||
+            item.team === state.selectedTeam;
+
+          const matchStrategic =
+            !state.strategicOnly ||
+            item.isPlanning;
+
+          return matchTeam && matchStrategic;
+
+        });
+
+      return filteredItems.filter(item => {
+
+        const createdDate =
+          new Date(item.created);
+
+        const resolutionDate =
+          item.resolutiondate
+            ? new Date(item.resolutiondate)
+            : null;
+
+        const existedBeforePeriod =
+          createdDate < periodStart;
+
+        const stillOpenAtPeriodStart =
+          !resolutionDate ||
+          resolutionDate >= periodStart;
+
+        return (
+          existedBeforePeriod &&
+          stillOpenAtPeriodStart
+        );
+
+      }).length;
+
+    }    
 
     function applyGlobalFilters() {
       const modeKey = state.strategicOnly ? 'plan' : 'all';
@@ -257,6 +313,16 @@ const state = {
         strategicOnly: state.strategicOnly,
         period: state.selectedPeriod,
         metrics: calculatePeriodMetrics(state.selectedPeriod)
+      });
+
+      console.log({
+        team: state.selectedTeam,
+        strategicOnly: state.strategicOnly,
+        period: state.selectedPeriod,
+        carryOver:
+          calculateCarryOver(
+            state.selectedPeriod
+          )
       });
 
       console.log(
@@ -727,21 +793,13 @@ const state = {
             matchStrategic &&
             matchStatus &&
             matchSearch;
-
-      if (state.tableStatus === 'Finalizado' && result) {
-          console.log(
-            'VISIBLE:',
-            item.key,
-            item.status
-            );
-        }    
+         
         return matchTeam && matchStrategic && matchStatus && matchSearch;
       });
 
       // Botones de filtro de estado
       const statuses = ['TODOS', ...new Set(rawInventoryItems.map(i => i.status))];
-      console.log("Estados encontrados:", statuses);
-          
+                
       let btnHtml = '';
       statuses.forEach((st) => {
         const activeCls = state.tableStatus === st ? 'active' : '';
@@ -955,41 +1013,15 @@ const state = {
           ].sort().reverse();
           
           const latestPeriod = availablePeriods[0];
-          console.log(
-            'Metricas periodo',
-            latestPeriod,
-            calculatePeriodMetrics(latestPeriod)
-          );
+         
 
           state.selectedPeriod = availablePeriods[0];
-          console.log(
-            'Periodo activo:',
-            state.selectedPeriod,
-            calculatePeriodMetrics(state.selectedPeriod)
-          );
-
-          if (availablePeriods.length > 1) {
-            console.log(
-              'Periodo anterior:',
-              availablePeriods[1],
-              calculatePeriodMetrics(availablePeriods[1])
-            );
-          };
-
-          console.log(
-            'Total periodos disponibles:',
-            availablePeriods.length
-          );
+          
+         
 
           renderPeriodSelector();
 
-          console.log('Períodos disponibles:', availablePeriods);
-
-          console.log(
-            calculatePeriodMetrics(
-              state.selectedPeriod
-            )
-          );
+        
 
           console.log(
             rawInventoryItems.filter(
@@ -999,15 +1031,7 @@ const state = {
             ).length
           );
 
-          /* if (data.issues && data.issues.length > 0) {
-              const ultimaFecha = data.issues[0].fields.created;
-              const fechaFormateada = new Date(
-                ultimaFecha
-              ).toLocaleString('es-CL');
-
-              document.getElementById('last-update').innerHTML =
-                `Última actualización de datos: ${fechaFormateada}`;
-            }     */
+        
 
           applyGlobalFilters();
 
