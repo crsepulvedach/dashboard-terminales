@@ -274,21 +274,21 @@ const state = {
           : curData.out;
       let balance = null;
       let carryOver = null;
+      let wip = null;
 
       if (state.selectedPeriod !== 'all') {
         const metrics =
           calculatePeriodMetrics(state.selectedPeriod);
 
-        const carryOver =
+        carryOver =
           calculateCarryOver(state.selectedPeriod);
 
-        const wip =
-          carryOver +
-          metrics.created -
-          metrics.closed;
 
         balance =
           metrics.created - metrics.closed;
+
+        wip =
+          carryOver + balance;  
 
 /*         carryOver =
           curData.wip - balance; */
@@ -370,7 +370,13 @@ const state = {
           <div class="kpi-top">
             <span class="kpi-title">WIP Activo en Ejecución</span>
             <span class="kpi-icon">⚡</span></div>
-          <div class="kpi-value">${curData.wip}</div>
+          <div class="kpi-value">
+            ${
+              state.selectedPeriod === 'all'
+                ? curData.wip
+                : wip
+            }
+  </div>
           <div class="kpi-meta">
             ${
               state.selectedPeriod === 'all'
