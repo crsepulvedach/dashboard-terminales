@@ -144,18 +144,32 @@ const state = {
     }
 
     function calculatePeriodMetrics(period) {
-      const teamItems =
+      /* const teamItems =
         state.selectedTeam === 'all'
           ? rawInventoryItems
           : rawInventoryItems.filter(
               item => item.team === state.selectedTeam
-            );
+            ); */
 
-      const created = teamItems.filter(
+        const filteredItems = rawInventoryItems.filter(item => {
+
+          const matchTeam =
+            state.selectedTeam === 'all' ||
+            item.team === state.selectedTeam;
+
+          const matchStrategic =
+            !state.strategicOnly ||
+            item.isPlanning;
+
+          return matchTeam && matchStrategic;
+
+        });      
+
+      const created = filteredItems.filter(
         item => item.createdPeriod === period
       ).length;
 
-      const closed = teamItems.filter(
+      const closed = filteredItems.filter(
         item => item.resolvedPeriod === period
       ).length;
 
