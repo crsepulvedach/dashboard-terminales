@@ -143,6 +143,34 @@ const state = {
       return `${months[month]} ${year}`;
     }
 
+    function getFilteredItems() {
+
+      return rawInventoryItems.filter(item => {
+
+        const matchTeam =
+          state.selectedTeam === 'all' ||
+          item.team === state.selectedTeam;
+
+        const matchStrategic =
+          !state.strategicOnly ||
+          item.isPlanning;
+
+        const matchPeriod =
+          existedInPeriod(
+            item,
+            state.selectedPeriod
+          );
+
+        return (
+          matchTeam &&
+          matchStrategic &&
+          matchPeriod
+        );
+
+      });
+
+    }
+
     function calculatePeriodMetrics(period) {
       /* const teamItems =
         state.selectedTeam === 'all'
@@ -151,7 +179,7 @@ const state = {
               item => item.team === state.selectedTeam
             ); */
 
-        const filteredItems = rawInventoryItems.filter(item => {
+      const filteredItems = rawInventoryItems.filter(item => {
 
           const matchTeam =
             state.selectedTeam === 'all' ||
@@ -163,7 +191,7 @@ const state = {
 
           return matchTeam && matchStrategic;
 
-        });      
+      });           
 
       const created = filteredItems.filter(
         item => item.createdPeriod === period
@@ -215,7 +243,7 @@ const state = {
       const periodStart =
         getPeriodStart(period);
 
-      const filteredItems =
+/*       const filteredItems =
         rawInventoryItems.filter(item => {
 
           const matchTeam =
@@ -228,7 +256,8 @@ const state = {
 
           return matchTeam && matchStrategic;
 
-        });
+        }); */
+      const filteredItems = getFilteredItems();
 
       return filteredItems.filter(item => {
 
@@ -293,11 +322,13 @@ const state = {
 /*         carryOver =
           curData.wip - balance; */
       }
-      const filteredItems = rawInventoryItems.filter(item => {
+      /* const filteredItems = rawInventoryItems.filter(item => {
         const matchTeam = (state.selectedTeam === 'all') || (item.team === state.selectedTeam);
         const matchStrategic = !state.strategicOnly || item.isPlanning;
         return matchTeam && matchStrategic;
-      });
+      }); */
+
+      const filteredItems = getFilteredItems();
 
       console.log(
         "applyGlobalFilters",
@@ -309,6 +340,13 @@ const state = {
           tableStatus: state.tableStatus
         }
       ); 
+
+      console.log(
+        'Periodo:',
+        state.selectedPeriod,
+        'Inventario:',
+        filteredItems.length
+      );
 
       console.log(
         calculatePeriodMetrics(
