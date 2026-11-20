@@ -229,6 +229,87 @@ const state = {
       };
     }
 
+    function calculateWeeklyFlow(period) {
+
+      if (!period || period === 'all') {
+        return [];
+      }
+
+      const [year, month] = period.split('-');
+
+      const filteredItems = rawInventoryItems.filter(item => {
+
+        if (isClosedWithoutResolution(item)) {
+          return false;
+        }
+
+        const matchTeam =
+          state.selectedTeam === 'all' ||
+          item.team === state.selectedTeam;
+
+        const matchStrategic =
+          !state.strategicOnly ||
+          item.isPlanning;
+
+        return (
+          matchTeam &&
+          matchStrategic
+        );
+
+      });
+
+      const weeks = [
+        { label: 'Sem 1', created: 0, resolved: 0 },
+        { label: 'Sem 2', created: 0, resolved: 0 },
+        { label: 'Sem 3', created: 0, resolved: 0 },
+        { label: 'Sem 4+', created: 0, resolved: 0 }
+      ];
+
+      function getWeekBucket(date) {
+
+        const day = date.getDate();
+
+        if (day <= 7) return 0;
+        if (day <= 14) return 1;
+        if (day <= 21) return 2;
+
+        return 3;
+      }
+
+      filteredItems.forEach(item => {
+
+        const createdDate =
+          item.created
+            ? new Date(item.created)
+            : null;
+
+        if (
+          createdDate &&
+          createdDate.getFullYear() === Number(year) &&
+          (createdDate.getMonth() + 1) === Number(month)
+        ) {
+          weeks[getWeekBucket(createdDate)].created++;
+        }
+
+        const resolvedDate =
+          item.resolutiondate
+            ? new Date(item.resolutiondate)
+            : null;
+
+        if (
+          resolvedDate &&
+          resolvedDate.getFullYear() === Number(year) &&
+          (resolvedDate.getMonth() + 1) === Number(month)
+        ) {
+          weeks[getWeekBucket(resolvedDate)].resolved++;
+        }
+
+      });
+
+      return weeks;
+
+    }
+
     function getPeriod(dateString) {
       if (!dateString) return null;
 
@@ -302,6 +383,12 @@ const state = {
 
       state.selectedPeriod = period;
       applyGlobalFilters();
+
+      console.log(
+        calculateWeeklyFlow(
+          state.selectedPeriod
+        )
+      );  
 
    /*    console.log(
         'Periodo seleccionado:',
