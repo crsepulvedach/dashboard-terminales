@@ -1171,7 +1171,7 @@ const state = {
     /**
      * Actualiza la tarjeta de distribución de antigüedad con interactividad y enlaces a Jira
      */
-    function updateAgingBuckets(filteredItems) {
+    /* function updateAgingBuckets(filteredItems) {
       const total = Math.max(filteredItems.length, 1);
       // Clasificación de los ítems en sus respectivos buckets
       const buckets = [
@@ -1183,7 +1183,7 @@ const state = {
           maxDays: 30,
           color: 'var(--accent-emerald)',
           badgeClass: 'good',
-          items: filteredItems.filter(i => i.ageDays <= 30)
+          items: filteredItems.filter(i => (i.ageDays || 0) <= 30)
         },
         {
           id: 'maduracion',
@@ -1193,7 +1193,7 @@ const state = {
           maxDays: 60,
           color: 'var(--accent-blue)',
           badgeClass: 'wip',
-          items: filteredItems.filter(i => i.ageDays > 30 && i.ageDays <= 60)
+          items: filteredItems.filter(i => (i.ageDays || 0) > 30 && (i.ageDays || 0) <= 60)
         },
         {
           id: 'envejecidas',
@@ -1203,7 +1203,7 @@ const state = {
           maxDays: 90,
           color: 'var(--accent-amber)',
           badgeClass: 'warn',
-          items: filteredItems.filter(i => i.ageDays > 60 && i.ageDays <= 90)
+          items: filteredItems.filter(i => (i.ageDays || 0) > 60 && (i.ageDays || 0) <= 90)
         },
         {
           id: 'criticas',
@@ -1213,7 +1213,7 @@ const state = {
           maxDays: null,
           color: 'var(--accent-rose)',
           badgeClass: 'danger',
-          items: filteredItems.filter(i => i.ageDays > 90)
+          items: filteredItems.filter(i => (i.ageDays || 0) > 90)
         }
       ];
       let html = '';
@@ -1265,6 +1265,164 @@ const state = {
         insightMessage = `✅ <strong>Flujo Saludable:</strong> Más del <strong>${100 - riesgoPct}%</strong> del trabajo activo tiene menos de 60 días.`;
       }
       document.getElementById('agingInsightBox').innerHTML = insightMessage;
+    } */
+
+    function updateAgingBuckets(filteredItems) {
+      try {
+        const items = Array.isArray(filteredItems) ? filteredItems : [];
+        const total = items.length;
+
+        // Si no hay ítems en el filtro actual, mostramos aviso amigable
+        if (total === 0) {
+          const teamName = (typeof teamAggregates !== 'undefined' && teamAggregates[state.selectedTeam]) 
+            ? teamAggregates[state.selectedTeam].name 
+            : 'Consolidado';
+          
+          const scopeEl = document.getElementById('agingScopeLabel');
+          if (scopeEl) scopeEl.innerText = `${teamName} • 0 requerimientos evaluados`;
+
+          const containerEl = document.getElementById('aging-bars-container');
+          if (containerEl) {
+            containerEl.innerHTML = `
+              <div style="padding: 24px; text-align: center; color: var(--text-dim); background: rgba(15,23,42,0.4); border-radius: 8px;">
+                No se encontraron tickets abiertos para el período o equipo seleccionado.
+              </div>
+            `;
+          }
+
+          const insightEl = document.getElementById('agingInsightBox');
+          if (insightEl) insightEl.innerHTML = 'ℹ️ Selecciona otro período o equipo para evaluar la antigüedad.';
+          return;
+        }
+
+        // 1. Clasificación con los rangos definidos y su condición JQL de respaldo
+        const buckets = [
+          {
+            title: 'Recientes',
+            rangeLabel: '< 30 días',
+            color: '#34d399', // Verde Esmeralda
+            jqlDateCondition: 'AND created >= -30d',
+            items: items.filter(i => (i.ageDays || 0) < 30)
+          },
+          {
+            title: 'En maduración',
+            rangeLabel: '31 - 60 días',
+            color: '#38bdf8', // Azul
+            jqlDateCondition: 'AND created < -30d AND created >= -60d',
+            items: items.filter(i => (i.ageDays || 0) >= 30 && (i.ageDays || 0) <= 60)
+          },
+          {
+            title: 'Envejecidas',
+            rangeLabel: '61 - 89 días',
+            color: '#fbbf24', // Ámbar
+            jqlDateCondition: 'AND created < -60d AND created >= -90d',
+            items: items.filter(i => (i.ageDays || 0) > 60 && (i.ageDays || 0) < 90)
+          },
+          {
+            title: 'Críticas',
+            rangeLabel: '≥ 90 días',
+            color: '#fb7185', // Rosa / Rojo
+            jqlDateCondition: 'AND created <= -90d',
+            items: items.filter(i => (i.ageDays || 0) >= 90)
+          }
+        ];
+
+        // 2. Generador de URL directa a Jira con coincidencia 1:1 de tickets
+        const getJiraUrl = (bucket) => {
+          const bucketItems = bucket.items;
+          if (!bucketItems || bucketItems.length === 0) return null;
+          const keys = bucketItems.map(i => i.key).filter(Boolean);
+          if (keys.length === 0) return null;
+
+          let jql = '';
+          // Hasta 150 tickets entran perfectamente en la URL de Jira (~1200 caracteres)
+          if (keys.length <= 150) {
+            jql = `issueKey in (${keys.join(', ')}) ORDER BY created ASC`;
+          } else {
+            // Fallback si superara los 150 tickets, aplicando la fecha exacta del bucket
+            const teamFilter = state.selectedTeam === 'chile' ? 'AND labels = "CDG_CL"' :
+                               state.selectedTeam === 'peru' ? 'AND labels = "CDG_PE"' :
+                               state.selectedTeam === 'supply' ? 'AND labels not in ("CDG_CL", "CDG_PE")' : '';
+            const stratFilter = state.strategicOnly ? 'AND labels = "Planning"' : '';
+            
+            jql = `project = "BURC" AND resolution = Unresolved ${bucket.jqlDateCondition} ${teamFilter} ${stratFilter} ORDER BY created ASC`;
+          }
+          return `https://tdentel.atlassian.net/issues/?jql=${encodeURIComponent(jql)}`;
+        };
+
+        // 3. Generación del HTML de las barras y botones
+        let html = '';
+        buckets.forEach(b => {
+          const count = b.items.length;
+          const pct = Math.round((count / total) * 100);
+          const jiraUrl = getJiraUrl(b);
+
+          html += `
+            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-left: 4px solid ${b.color}; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="width: 10px; height: 10px; border-radius: 50%; background: ${b.color}; display: inline-block;"></span>
+                  <strong style="color: #fff; font-size: 0.88rem;">${b.title}</strong>
+                  <span style="font-size: 0.72rem; padding: 2px 7px; border-radius: 10px; background: rgba(255,255,255,0.06); color: #94a3b8; border: 1px solid rgba(255,255,255,0.1);">${b.rangeLabel}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 0.82rem; color: #cbd5e1; font-weight: 600;">
+                    ${count} <span style="font-size: 0.74rem; color: #94a3b8; font-weight: 400;">(${pct}%)</span>
+                  </span>
+                  ${jiraUrl ? `
+                    <a href="${jiraUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 3px 9px; border-radius: 6px; font-size: 0.74rem; font-weight: 600; text-decoration: none;">
+                      <span>Ver en Jira</span>
+                      <span style="font-size: 11px;">↗</span>
+                    </a>
+                  ` : `
+                    <span style="font-size: 0.72rem; color: #64748b; padding: 3px 6px;">0 tickets</span>
+                  `}
+                </div>
+              </div>
+              <div style="height: 10px; background: #0f172a; border-radius: 5px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
+                <div style="width: ${pct}%; height: 100%; background: ${b.color}; border-radius: 5px; transition: width 0.4s ease;"></div>
+              </div>
+            </div>
+          `;
+        });
+
+        // 4. Actualización del encabezado/ámbito
+        const teamName = (typeof teamAggregates !== 'undefined' && teamAggregates[state.selectedTeam]) 
+          ? teamAggregates[state.selectedTeam].name 
+          : 'Consolidado';
+
+        const scopeEl = document.getElementById('agingScopeLabel');
+        if (scopeEl) {
+          scopeEl.innerText = `${teamName} • ${total} requerimientos evaluados`;
+        }
+
+        const barsContainer = document.getElementById('aging-bars-container');
+        if (barsContainer) {
+          barsContainer.innerHTML = html;
+        }
+
+        // 5. Diagnóstico e insight de riesgo
+        const criticosCount = buckets[3].items.length;
+        const envejecidosCount = buckets[2].items.length;
+        const riesgoTotal = criticosCount + envejecidosCount;
+        const riesgoPct = Math.round((riesgoTotal / total) * 100);
+
+        const insightEl = document.getElementById('agingInsightBox');
+        if (insightEl) {
+          let insightText = '';
+          if (criticosCount > 0) {
+            insightText = `⚠️ <strong>Riesgo Crítico:</strong> Hay <strong>${criticosCount} ítems con ≥ 90 días</strong> de antigüedad. Se recomienda priorizar su destrabe o cierre usando el botón <em>"Ver en Jira ↗"</em>.`;
+          } else if (riesgoPct > 25) {
+            insightText = `⚡ <strong>Atención en Flujo:</strong> El <strong>${riesgoPct}%</strong> del inventario supera los 60 días (${riesgoTotal} ítems).`;
+          } else {
+            insightText = `✅ <strong>Flujo Saludable:</strong> El <strong>${100 - riesgoPct}%</strong> del backlog activo tiene menos de 60 días.`;
+          }
+          insightEl.innerHTML = insightText;
+        }
+
+      } catch (err) {
+        console.error('Error renderizando Aging Buckets:', err);
+      }
     }
 
 
