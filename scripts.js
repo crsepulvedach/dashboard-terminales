@@ -608,7 +608,31 @@ const state = {
 
       // 3. Ritmo de Flujo Semanal Dinámico (Ingreso vs Salida por filtro)
       let flowHtml = '';
-      const weeklyFlowData = curData.weeklyFlow || [];
+      //const weeklyFlowData = curData.weeklyFlow || [];
+      const weeklyFlowData =
+        calculateWeeklyFlow(
+          state.selectedPeriod
+        );
+
+      console.log(weeklyFlowData);
+
+      const totalCreated =
+        weeklyFlowData.reduce(
+          (sum, w) => sum + w.created,
+          0
+        );
+
+      const totalResolved =
+        weeklyFlowData.reduce(
+          (sum, w) => sum + w.resolved,
+          0
+        );
+
+      console.log({
+        totalCreated,
+        totalResolved
+      });
+
       const maxFlowVal = Math.max(...weeklyFlowData.flatMap(w => [w.created, w.resolved]), 1);
 
       weeklyFlowData.forEach(item => {
