@@ -1038,11 +1038,32 @@ const state = {
 
     function updateSimulator(wipVal) {
       document.getElementById('wip-display').innerText = wipVal + ' tareas';
-      const modeKey = state.strategicOnly ? 'plan' : 'all';
-      const curData = teamAggregates[state.selectedTeam][modeKey];
+      //const modeKey = state.strategicOnly ? 'plan' : 'all';
+      //const curData = teamAggregates[state.selectedTeam][modeKey];
 
-      const thPerDay = Math.max(curData.out / 31, 0.05);
-      const baseWip = curData.wip;
+      //const thPerDay = Math.max(curData.out / 31, 0.05);
+      //const baseWip = curData.wip;
+
+      const periodMetrics =
+        calculatePeriodMetrics(
+          state.selectedPeriod
+        );
+
+      const throughputOut =
+        periodMetrics.closed;
+
+      const {
+        totalWip
+      } = calculateWipDistribution();
+
+      const thPerDay =
+        Math.max(
+          throughputOut / 31,
+          0.05
+        );
+
+      const baseWip =
+        totalWip;
       const currentLeadTime = baseWip / thPerDay;
       const simulatedLeadTime = wipVal / thPerDay;
 
