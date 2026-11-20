@@ -9,6 +9,7 @@ const state = {
     /*const rawInventoryItems = [];*/
     let rawInventoryItems = [];
     let availablePeriods = [];
+    const JIRA_BASE_URL = 'https://tdentel.atlassian.net';
 
     const teamAggregates = {
       all: {
@@ -1131,183 +1132,137 @@ const state = {
       `;
       document.getElementById('agingInsightBox').innerHTML = `<strong>Análisis de Antigüedad:</strong> El inventario refleja una distribución adecuada en tareas recientes y en maduración para el ámbito <strong>${teamAggregates[state.selectedTeam].name}</strong>.`;
     } */
-    function updateAgingBuckets(filteredItems) {
-      // Constante base de tu instancia Jira (obtenida de la configuración del proyecto)
-      const JIRA_BASE_URL = 'https://tdentel.atlassian.net';
-
-      /**
-       * Genera una URL de búsqueda avanzada JQL en Jira para un conjunto de tickets
-       * @param {Array} items - Lista de objetos de tickets del bucket
-       * @param {string} bucketName - Nombre descriptivo del bucket
-       * @returns {string|null} - URL codificada para Jira
-       */
-      function buildJiraJqlUrl(items) {
-        if (!items || items.length === 0) return null;
-
-        const keys = items.map(i => i.key);
-        
-        // Si la cantidad de keys es manejable (< 70), usamos 'issueKey in (...)', que es 100% exacto
-        let jql = '';
-        if (keys.length <= 70) {
-          jql = `issueKey in (${keys.join(', ')}) ORDER BY created ASC`;
-        } else {
-          // Fallback por criterios si hay demasiados tickets
-          const teamFilter = state.selectedTeam === 'chile' ? 'AND labels = "CDG_CL"' :
-                            state.selectedTeam === 'peru' ? 'AND labels = "CDG_PE"' :
-                            state.selectedTeam === 'supply' ? 'AND labels not in ("CDG_CL", "CDG_PE")' : '';
-          const stratFilter = state.strategicOnly ? 'AND labels = "Planning"' : '';
-          jql = `project = "BURC" AND resolution = Unresolved ${teamFilter} ${stratFilter} ORDER BY created ASC`;
-        }
-
-        return `${JIRA_BASE_URL}/issues/?jql=${encodeURIComponent(jql)}`;
-      }
-
-      /**
-       * Filtra el inventario interno por un rango de días y cambia de tab
-       */
-      function drillDownAgingLocally(minDays, maxDays) {
-        // Cambiamos a la pestaña de inventario activo
-        switchTab('tab-inventario');
-        
-        // Aplicamos un filtro de búsqueda o ajustamos visualmente
-        const searchInput = document.getElementById('table-search');
-        if (searchInput) {
-          searchInput.placeholder = `Filtrando: ${minDays}-${maxDays || '+'} días...`;
-        }
-      }
-
-      /**
-       * Actualiza la tarjeta de distribución de antigüedad con interactividad y enlaces a Jira
-       */
     
+    /**
+     * Genera una URL de búsqueda avanzada JQL en Jira para un conjunto de tickets
+     * @param {Array} items - Lista de objetos de tickets del bucket
+     * @param {string} bucketName - Nombre descriptivo del bucket
+     * @returns {string|null} - URL codificada para Jira
+     */
+    function buildJiraJqlUrl(items) {
+      if (!items || items.length === 0) return null;
+      const keys = items.map(i => i.key);
+      // Si la cantidad de keys es manejable (< 70), usamos 'issueKey in (...)', que es 100% exacto
+      let jql = '';
+      if (keys.length <= 70) {
+        jql = `issueKey in (${keys.join(', ')}) ORDER BY created ASC`;
+      } else {
+        // Fallback por criterios si hay demasiados tickets
+        const teamFilter = state.selectedTeam === 'chile' ? 'AND labels = "CDG_CL"' :
+                          state.selectedTeam === 'peru' ? 'AND labels = "CDG_PE"' :
+                          state.selectedTeam === 'supply' ? 'AND labels not in ("CDG_CL", "CDG_PE")' : '';
+        const stratFilter = state.strategicOnly ? 'AND labels = "Planning"' : '';
+        jql = `project = "BURC" AND resolution = Unresolved ${teamFilter} ${stratFilter} ORDER BY created ASC`;
+      }
+      return `${JIRA_BASE_URL}/issues/?jql=${encodeURIComponent(jql)}`;
+    }
+    /**
+     * Filtra el inventario interno por un rango de días y cambia de tab
+     */
+    function drillDownAgingLocally(minDays, maxDays) {
+      // Cambiamos a la pestaña de inventario activo
+      switchTab('tab-inventario');
+      // Aplicamos un filtro de búsqueda o ajustamos visualmente
+      const searchInput = document.getElementById('table-search');
+      if (searchInput) {
+        searchInput.placeholder = `Filtrando: ${minDays}-${maxDays || '+'} días...`;
+      }
+    }
+    /**
+     * Actualiza la tarjeta de distribución de antigüedad con interactividad y enlaces a Jira
+     */
     function updateAgingBuckets(filteredItems) {
-      try {
-        const items = Array.isArray(filteredItems) ? filteredItems : [];
-        const total = Math.max(items.length, 1);
-
-        // 1. Clasificación de tickets por rangos de días
-        const buckets = [
-          {
-            title: 'Recientes',
-            rangeLabel: '< 30 días',
-            color: '#34d399', // Verde Esmeralda
-            items: items.filter(i => (i.ageDays || 0) <= 30)
-          },
-          {
-            title: 'En maduración',
-            rangeLabel: '31 - 120 días',
-            color: '#38bdf8', // Azul
-            items: items.filter(i => (i.ageDays || 0) > 30 && (i.ageDays || 0) <= 120)
-          },
-          {
-            title: 'Envejecidas',
-            rangeLabel: '121 - 210 días',
-            color: '#fbbf24', // Ámbar
-            items: items.filter(i => (i.ageDays || 0) > 120 && (i.ageDays || 0) <= 210)
-          },
-          {
-            title: 'Críticas',
-            rangeLabel: '> 210 días',
-            color: '#fb7185', // Rosa / Rojo
-            items: items.filter(i => (i.ageDays || 0) > 210)
-          }
-        ];
-
-        // 2. Generador de URL a Jira con JQL (autocontenido)
-        const getJiraUrl = (bucketItems) => {
-          if (!bucketItems || bucketItems.length === 0) return null;
-          const keys = bucketItems.map(i => i.key).filter(Boolean);
-          if (keys.length === 0) return null;
-
-          let jql = '';
-          if (keys.length <= 60) {
-            jql = `issueKey in (${keys.join(', ')}) ORDER BY created ASC`;
-          } else {
-            const teamFilter = state.selectedTeam === 'chile' ? 'AND labels = "CDG_CL"' :
-                               state.selectedTeam === 'peru' ? 'AND labels = "CDG_PE"' :
-                               state.selectedTeam === 'supply' ? 'AND labels not in ("CDG_CL", "CDG_PE")' : '';
-            const stratFilter = state.strategicOnly ? 'AND labels = "Planning"' : '';
-            jql = `project = "BURC" AND resolution = Unresolved ${teamFilter} ${stratFilter} ORDER BY created ASC`;
-          }
-          return `https://tdentel.atlassian.net/issues/?jql=${encodeURIComponent(jql)}`;
-        };
-
-        // 3. Renderizado de barras y botones
-        let html = '';
-        buckets.forEach(b => {
-          const count = b.items.length;
-          const pct = Math.round((count / total) * 100);
-          const jiraUrl = getJiraUrl(b.items);
-
-          html += `
-            <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-left: 4px solid ${b.color}; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px;">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 6px;">
-                <div style="display: flex; align-items: center; gap: 8px;">
-                  <span style="width: 10px; height: 10px; border-radius: 50%; background: ${b.color}; display: inline-block;"></span>
-                  <strong style="color: #fff; font-size: 0.88rem;">${b.title}</strong>
-                  <span style="font-size: 0.72rem; padding: 2px 7px; border-radius: 10px; background: rgba(255,255,255,0.06); color: #94a3b8; border: 1px solid rgba(255,255,255,0.1);">${b.rangeLabel}</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                  <span style="font-size: 0.82rem; color: #cbd5e1; font-weight: 600;">
-                    ${count} <span style="font-size: 0.74rem; color: #94a3b8; font-weight: 400;">(${pct}%)</span>
-                  </span>
-                  ${jiraUrl ? `
-                    <a href="${jiraUrl}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 4px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 3px 9px; border-radius: 6px; font-size: 0.74rem; font-weight: 600; text-decoration: none;">
-                      <span>Ver en Jira</span>
-                      <span style="font-size: 11px;">↗</span>
-                    </a>
-                  ` : `
-                    <span style="font-size: 0.72rem; color: #64748b; padding: 3px 6px;">0 tickets</span>
-                  `}
-                </div>
+      const total = Math.max(filteredItems.length, 1);
+      // Clasificación de los ítems en sus respectivos buckets
+      const buckets = [
+        {
+          id: 'recientes',
+          title: 'Recientes',
+          rangeLabel: '< 30 días',
+          minDays: 0,
+          maxDays: 30,
+          color: 'var(--accent-emerald)',
+          badgeClass: 'good',
+          items: filteredItems.filter(i => i.ageDays <= 30)
+        },
+        {
+          id: 'maduracion',
+          title: 'En maduración',
+          rangeLabel: '31 - 120 días',
+          minDays: 31,
+          maxDays: 120,
+          color: 'var(--accent-blue)',
+          badgeClass: 'wip',
+          items: filteredItems.filter(i => i.ageDays > 30 && i.ageDays <= 120)
+        },
+        {
+          id: 'envejecidas',
+          title: 'Envejecidas',
+          rangeLabel: '121 - 210 días',
+          minDays: 121,
+          maxDays: 210,
+          color: 'var(--accent-amber)',
+          badgeClass: 'warn',
+          items: filteredItems.filter(i => i.ageDays > 120 && i.ageDays <= 210)
+        },
+        {
+          id: 'criticas',
+          title: 'Críticas (Riesgo)',
+          rangeLabel: '> 210 días',
+          minDays: 211,
+          maxDays: null,
+          color: 'var(--accent-rose)',
+          badgeClass: 'danger',
+          items: filteredItems.filter(i => i.ageDays > 210)
+        }
+      ];
+      let html = '';
+      buckets.forEach(b => {
+        const count = b.items.length;
+        const pct = Math.round((count / total) * 100);
+        const jiraUrl = buildJiraJqlUrl(b.items);
+        html += `
+          <div class="aging-bucket-card" style="border-left: 4px solid ${b.color};">
+            <div class="aging-bucket-header">
+              <div class="aging-bucket-info">
+                <span class="aging-bullet" style="background: ${b.color};"></span>
+                <strong>${b.title}</strong>
+                <span class="aging-range-pill">${b.rangeLabel}</span>
               </div>
-              <div style="height: 10px; background: #0f172a; border-radius: 5px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
-                <div style="width: ${pct}%; height: 100%; background: ${b.color}; border-radius: 5px; transition: width 0.4s ease;"></div>
+              <div class="aging-bucket-actions">
+                <span class="aging-count-badge">${count} ítems <small>(${pct}%)</small></span>
+                ${jiraUrl ? `
+                  <a href="${jiraUrl}" target="_blank" rel="noopener noreferrer" class="btn-jira-link" title="Ver estos ${count} tickets en Jira">
+                    <span>Ver en Jira</span>
+                    <span style="font-size: 11px;">↗</span>
+                  </a>
+                ` : `
+                  <span class="btn-jira-link disabled" title="No hay tickets en este rango">0 tickets</span>
+                `}
               </div>
             </div>
-          `;
-        });
-
-        // 4. Actualización del subtítulo con ámbito e ítems
-        const teamName = (typeof teamAggregates !== 'undefined' && teamAggregates[state.selectedTeam]) 
-          ? teamAggregates[state.selectedTeam].name 
-          : 'Consolidado';
-        
-        const scopeEl = document.getElementById('agingScopeLabel');
-        if (scopeEl) {
-          scopeEl.innerText = `${teamName} • ${items.length} requerimientos evaluados`;
-        }
-
-        // 5. Inyección en el contenedor de barras
-        const barsContainer = document.getElementById('aging-bars-container');
-        if (barsContainer) {
-          barsContainer.innerHTML = html;
-        }
-
-        // 6. Diagnóstico ágil dinámico
-        const criticosCount = buckets[3].items.length;
-        const envejecidosCount = buckets[2].items.length;
-        const riesgoTotal = criticosCount + envejecidosCount;
-        const riesgoPct = Math.round((riesgoTotal / total) * 100);
-
-        const insightEl = document.getElementById('agingInsightBox');
-        if (insightEl) {
-          let insightText = '';
-          if (riesgoPct > 20) {
-            insightText = `⚠️ <strong>Riesgo de Deuda de Backlog:</strong> El <strong>${riesgoPct}%</strong> del inventario (${riesgoTotal} ítems) tiene más de 120 días abierto. Usa <em>"Ver en Jira ↗"</em> para acordar su cierre o replanificación.`;
-          } else {
-            insightText = `✅ <strong>Flujo Saludable:</strong> El <strong>${100 - riesgoPct}%</strong> del trabajo activo tiene menos de 120 días.`;
-          }
-          insightEl.innerHTML = insightText;
-        }
-
-      } catch (err) {
-        console.error('Error renderizando Aging Buckets:', err);
-        const container = document.getElementById('aging-bars-container');
-        if (container) {
-          container.innerHTML = `<div style="padding: 12px; color: #fb7185; font-size: 0.8rem;">Ocurrió un error al procesar la distribución de antigüedad: ${err.message}</div>`;
-        }
+            <!-- Barra de progreso -->
+            <div class="aging-track">
+              <div class="aging-fill" style="width: ${pct}%; background: ${b.color};"></div>
+            </div>
+          </div>
+        `;
+      });
+      document.getElementById('agingScopeLabel').innerText = 
+        `${teamAggregates[state.selectedTeam].name} • ${filteredItems.length} ítems evaluados`;
+      document.getElementById('aging-bars-container').innerHTML = html;
+      // Insight analítico dinámico según el volumen de deuda técnica / aging
+      const criticosCount = buckets[3].items.length;
+      const envejecidosCount = buckets[2].items.length;
+      const riesgoTotal = criticosCount + envejecidosCount;
+      const riesgoPct = Math.round((riesgoTotal / total) * 100);
+      let insightMessage = '';
+      if (riesgoPct > 25) {
+        insightMessage = `⚠️ <strong>Riesgo de Deuda de Backlog:</strong> Un <strong>${riesgoPct}%</strong> del inventario supera los 120 días abierto (${riesgoTotal} requerimientos). Te recomendamos abrir el listado de <em>Críticas</em> en Jira para acordar su cierre o cancelación.`;
+      } else {
+        insightMessage = `✅ <strong>Flujo Saludable:</strong> Más del <strong>${100 - riesgoPct}%</strong> del trabajo se mantiene por debajo de 120 días.`;
       }
+      document.getElementById('agingInsightBox').innerHTML = insightMessage;
     }
 
 
