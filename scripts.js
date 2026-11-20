@@ -171,6 +171,22 @@ const state = {
 
     }
 
+    function isClosedWithoutResolution(item) {
+
+      const closedStatuses = [
+        'Finalizado',
+        'Implementado',
+        'Cancelado'
+      ];
+
+      return (
+        closedStatuses.includes(item.status) &&
+        !item.resolutiondate
+      );
+
+    }
+
+
     function calculatePeriodMetrics(period) {
       /* const teamItems =
         state.selectedTeam === 'all'
@@ -180,7 +196,10 @@ const state = {
             ); */
 
       const filteredItems = rawInventoryItems.filter(item => {
-
+          
+            if (isClosedWithoutResolution(item)) {
+              return false;
+            }
           const matchTeam =
             state.selectedTeam === 'all' ||
             item.team === state.selectedTeam;
@@ -289,7 +308,7 @@ const state = {
       const periodStart =
         getPeriodStart(period);
 
-/*       const filteredItems =
+      const filteredItems =
         rawInventoryItems.filter(item => {
 
           const matchTeam =
@@ -302,8 +321,9 @@ const state = {
 
           return matchTeam && matchStrategic;
 
-        }); */
-      const filteredItems = getFilteredItems();
+        }); 
+
+     // const filteredItems = getFilteredItems();
 
       return filteredItems.filter(item => {
 
