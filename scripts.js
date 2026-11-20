@@ -788,14 +788,11 @@ const state = {
           item => !item.isPlanning
         ).length;
 
-      const totalWip =
-        planningWip +
-        operationalWip;
-
       return {
         planningWip,
         operationalWip,
-        totalWip
+        totalWip:
+          planningWip + operationalWip
       };
 
     }
