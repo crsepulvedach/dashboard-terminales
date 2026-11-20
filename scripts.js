@@ -492,6 +492,7 @@ const state = {
 /*         carryOver =
           curData.wip - balance; */
       }
+
       /* const filteredItems = rawInventoryItems.filter(item => {
         const matchTeam = (state.selectedTeam === 'all') || (item.team === state.selectedTeam);
         const matchStrategic = !state.strategicOnly || item.isPlanning;
@@ -510,44 +511,11 @@ const state = {
           tableStatus: state.tableStatus
         }
       ); */
-
-      /* console.log(
-        'Periodo:',
-        state.selectedPeriod,
-        'Inventario:',
-        filteredItems.length
-      );
-
-      console.log(
-        calculatePeriodMetrics(
-          state.selectedPeriod
-        )
-      );
-
       console.log({
-        team: state.selectedTeam,
-        strategicOnly: state.strategicOnly,
-        period: state.selectedPeriod,
-        metrics: calculatePeriodMetrics(state.selectedPeriod)
+        throughputOut,
+        wip
       });
-
-      console.log({
-        team: state.selectedTeam,
-        strategicOnly: state.strategicOnly,
-        period: state.selectedPeriod,
-        carryOver:
-          calculateCarryOver(
-            state.selectedPeriod
-          )
-      });
-
-      console.log(
-        rawInventoryItems.filter(
-          i =>
-            i.team === 'chile' &&
-            i.createdPeriod === state.selectedPeriod
-        ).length
-      );*/
+    
 
       // 1. Alertas y Badges de Bloqueos
       const blockerItems = filteredItems.filter(i => i.status === 'Detenido');
@@ -1062,10 +1030,7 @@ const state = {
       document.getElementById('slider-cur-lbl').innerText = `${baseWip} (Actual)`;
       updateSimulator(baseWip);
 
-      console.log({
-        throughputOut,
-        wip
-      });
+      
     }
 
     function updateSimulator(wipVal) {
