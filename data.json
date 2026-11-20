@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2026-11-19T18:15:24.909Z",
+  "lastUpdate": "2026-11-20T10:46:59.756Z",
   "totalIssues": 708,
   "issues": [
     {
@@ -621,7 +621,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -667,7 +669,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -713,7 +717,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -759,7 +765,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -29847,20 +29855,22 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12334",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "Detenido",
-          "id": "12334",
+          "name": "En Curso",
+          "id": "12207",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/2",
-            "id": 2,
-            "key": "new",
-            "colorName": "blue-gray",
-            "name": "To Do"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -29893,20 +29903,22 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12334",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "Detenido",
-          "id": "12334",
+          "name": "En Curso",
+          "id": "12207",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/2",
-            "id": 2,
-            "key": "new",
-            "colorName": "blue-gray",
-            "name": "To Do"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -33510,20 +33522,22 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12334",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "Detenido",
-          "id": "12334",
+          "name": "En Curso",
+          "id": "12207",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/2",
-            "id": 2,
-            "key": "new",
-            "colorName": "blue-gray",
-            "name": "To Do"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
