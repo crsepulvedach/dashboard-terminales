@@ -680,7 +680,8 @@ const state = {
       updateCapacityBars(curData);
 
       // 8. Simulador Ley de Little
-      updateFlowSimulator(curData);
+      //updateFlowSimulator(curData);
+      updateFlowSimulator(throughputOut, wip);
 
       // 9. Aging Work Buckets
       updateAgingBuckets(filteredItems);
@@ -1006,9 +1007,9 @@ const state = {
       document.getElementById('capacityDistributionContainer').innerHTML = html;
     }
 
-    function updateFlowSimulator(curData) {
-      const thDaily = Math.max(curData.out / 31, 0.05);
-      const baseWip = curData.wip;
+    function updateFlowSimulator(throughputOut, wip) {
+      const thDaily = Math.max(throughputOut / 31, 0.05);
+      const baseWip = wip;
       const initialLeadTime = (baseWip / thDaily).toFixed(1);
 
       document.getElementById('littles-law-desc').innerHTML = `En sistemas ágiles, si el ritmo promedio es de <strong>${thDaily.toFixed(2)} tareas/día</strong>, mantener <strong>${baseWip} tareas abiertas</strong> genera un tiempo de cola teórico de:`;
