@@ -1146,7 +1146,8 @@ const state = {
           /* console.log(rawInventoryItems[0]);
           console.log('Tickets Jira:', rawInventoryItems.length);
           
-          console.log('Periodo seleccionado:', state.selectedPeriod);
+          console.log('Periodo seleccionado:', state.selectedPeriod); */
+
           availablePeriods = [
             ...new Set(
               rawInventoryItems.flatMap(item => [
@@ -1154,7 +1155,7 @@ const state = {
                 item.resolvedPeriod
               ]).filter(Boolean)
             )
-          ].sort().reverse(); */
+          ].sort().reverse(); 
           
           const latestPeriod = availablePeriods[0];
          
