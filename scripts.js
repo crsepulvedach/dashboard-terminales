@@ -775,25 +775,65 @@ const state = {
 
     function calculateWipDistribution() {
 
-      const filteredItems =
-        getFilteredItems();
+      const periodEnd =
+          getPeriodEnd(
+            state.selectedPeriod
+          );
 
-      const planningWip =
-        filteredItems.filter(
-          item => item.isPlanning
-        ).length;
+        const filteredItems =
+          rawInventoryItems.filter(item => {
 
-      const operationalWip =
-        filteredItems.filter(
-          item => !item.isPlanning
-        ).length;
+            if (isClosedWithoutResolution(item)) {
+              return false;
+            }
 
-      return {
-        planningWip,
-        operationalWip,
-        totalWip:
-          planningWip + operationalWip
-      };
+            const matchTeam =
+              state.selectedTeam === 'all' ||
+              item.team === state.selectedTeam;
+
+            const matchStrategic =
+              !state.strategicOnly ||
+              item.isPlanning;
+
+            const createdDate =
+              new Date(item.created);
+
+            const resolvedDate =
+              item.resolutiondate
+                ? new Date(item.resolutiondate)
+                : null;
+
+            const openAtPeriodEnd =
+              createdDate <= periodEnd &&
+              (
+                !resolvedDate ||
+                resolvedDate > periodEnd
+              );
+
+            return (
+              matchTeam &&
+              matchStrategic &&
+              openAtPeriodEnd
+            );
+
+          });
+
+        const planningWip =
+          filteredItems.filter(
+            item => item.isPlanning
+          ).length;
+
+        const operationalWip =
+          filteredItems.filter(
+            item => !item.isPlanning
+          ).length;
+
+        return {
+          planningWip,
+          operationalWip,
+          totalWip:
+            planningWip + operationalWip
+        };
 
     }
 
