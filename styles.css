@@ -195,6 +195,125 @@ input:checked + .slider-toggle:before { transform: translateX(20px); }
 .dist-bar-track { height: 12px; background: #1e293b; border-radius: 6px; overflow: hidden; display: flex; }
 .dist-bar-fill { height: 100%; transition: width 0.4s ease; }
 
+
+/* ===================================================
+   TARJETAS INTERACTIVAS DE AGING / ANTIGÜEDAD
+   =================================================== */
+.aging-bucket-card {
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.aging-bucket-card:hover {
+  background: rgba(30, 41, 59, 0.7);
+  border-color: var(--border-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.aging-bucket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.aging-bucket-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #fff;
+}
+
+.aging-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.aging-range-pill {
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.aging-bucket-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.aging-count-badge {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.aging-count-badge small {
+  color: var(--text-dim);
+}
+
+/* Botón directo a Jira */
+.btn-jira-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--accent-blue);
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-jira-link:hover {
+  background: var(--accent-blue);
+  color: #0a0e1a;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-jira-link.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: transparent;
+  border-color: var(--border-color);
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+/* Barra de progreso de Antigüedad */
+.aging-track {
+  height: 8px;
+  background: #0f172a;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.aging-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 @media (max-width: 900px) {
   .grid-2 { grid-template-columns: 1fr; }
   .header-container { flex-direction: column; align-items: flex-start; }
