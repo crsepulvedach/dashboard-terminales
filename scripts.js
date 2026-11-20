@@ -147,6 +147,10 @@ const state = {
 
       return rawInventoryItems.filter(item => {
 
+        if (isClosedWithoutResolution(item)) {
+          return false;
+        } 
+               
         const matchTeam =
           state.selectedTeam === 'all' ||
           item.team === state.selectedTeam;
