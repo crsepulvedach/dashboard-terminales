@@ -770,9 +770,29 @@ const state = {
     }
 
     function updateWeeklyChart(curData) {
-      const plan = curData.weeklyPlan || [0, 0, 0, 0];
-      const op = state.strategicOnly ? [0, 0, 0, 0] : (curData.weeklyOp || [0, 0, 0, 0]);
-      const maxVal = Math.max(...plan.map((p, idx) => p + op[idx]), 1);
+      const weeklyFlowData =
+        calculateWeeklyFlow(
+          state.selectedPeriod
+        );
+
+        if (!weeklyFlowData.length) {
+          document.getElementById('weeklyChartContainer').innerHTML =
+            '<div style="padding:20px;color:var(--text-muted);">Seleccione un período para visualizar el flujo semanal.</div>';
+
+          return;
+        }
+      //const plan = curData.weeklyPlan || [0, 0, 0, 0];
+      //const op = state.strategicOnly ? [0, 0, 0, 0] : (curData.weeklyOp || [0, 0, 0, 0]);
+      //const maxVal = Math.max(...plan.map((p, idx) => p + op[idx]), 1);
+
+      const maxVal = Math.max(
+        ...weeklyFlowData.flatMap(w => [
+          w.created,
+          w.resolved
+        ]),
+        1
+      );
+
       const scaleY = val => (val / Math.max(maxVal, 10)) * 110;
 
       let barsHtml = '';
@@ -780,14 +800,32 @@ const state = {
       const xOffsets = [70, 160, 250, 340];
 
       weeks.forEach((w, i) => {
-        const pVal = plan[i];
-        const oVal = op[i];
-        const pHeight = scaleY(pVal);
-        const oHeight = scaleY(oVal);
-        const pY = 150 - pHeight;
-        const oY = 150 - oHeight;
+        //const pVal = plan[i];
+        //const oVal = op[i];
+        const createdVal =
+          weeklyFlowData[i].created;
 
-        barsHtml += `
+        const resolvedVal =
+          weeklyFlowData[i].resolved;
+
+        //const pHeight = scaleY(pVal);
+        //const oHeight = scaleY(oVal);
+        //const pY = 150 - pHeight;
+        //const oY = 150 - oHeight;
+
+        const cHeight =
+          scaleY(createdVal);
+
+        const rHeight =
+          scaleY(resolvedVal);
+
+        const cY =
+          150 - cHeight;
+
+        const rY =
+          150 - rHeight;
+
+      /*   barsHtml += `
           <rect x="${xOffsets[i]}" y="${pY}" width="26" height="${pHeight}" fill="#c084fc" rx="3"/>
           <text x="${xOffsets[i] + 13}" y="${Math.max(pY - 5, 20)}" fill="#c084fc" font-size="11" text-anchor="middle">${pVal > 0 ? pVal : ''}</text>
           ${!state.strategicOnly ? `
@@ -795,7 +833,55 @@ const state = {
             <text x="${xOffsets[i] + 43}" y="${Math.max(oY - 5, 20)}" fill="#cbd5e1" font-size="11" text-anchor="middle">${oVal > 0 ? oVal : ''}</text>
           ` : ''}
           <text x="${xOffsets[i] + (state.strategicOnly ? 13 : 28)}" y="168" fill="#94a3b8" font-size="11" text-anchor="middle">${w}</text>
+        `; */
+
+        barsHtml += `
+          <rect
+            x="${xOffsets[i]}"
+            y="${cY}"
+            width="26"
+            height="${cHeight}"
+            fill="#38bdf8"
+            rx="3"/>
+
+          <text
+            x="${xOffsets[i] + 13}"
+            y="${Math.max(cY - 5, 20)}"
+            fill="#38bdf8"
+            font-size="11"
+            text-anchor="middle">
+            ${createdVal > 0 ? createdVal : ''}
+          </text>
+
+          <rect
+            x="${xOffsets[i] + 30}"
+            y="${rY}"
+            width="26"
+            height="${rHeight}"
+            fill="#34d399"
+            rx="3"/>
+
+          <text
+            x="${xOffsets[i] + 43}"
+            y="${Math.max(rY - 5, 20)}"
+            fill="#34d399"
+            font-size="11"
+            text-anchor="middle">
+            ${resolvedVal > 0 ? resolvedVal : ''}
+          </text>
+
+          <text
+            x="${xOffsets[i] + 28}"
+            y="168"
+            fill="#94a3b8"
+            font-size="11"
+            text-anchor="middle">
+            ${w}
+          </text>
         `;
+
+ 
+        
       });
 
       document.getElementById('weeklyChartContainer').innerHTML = `
@@ -809,8 +895,13 @@ const state = {
           ${barsHtml}
         </svg>
       `;
-      document.getElementById('chartScopeLabel').innerText = `${teamAggregates[state.selectedTeam].name} (${state.strategicOnly ? 'Solo Planning' : 'Planning vs Operativo'})`;
-      document.getElementById('chartLegend').style.display = state.strategicOnly ? 'none' : 'flex';
+      //document.getElementById('chartScopeLabel').innerText = `${teamAggregates[state.selectedTeam].name} (${state.strategicOnly ? 'Solo Planning' : 'Planning vs Operativo'})`;
+      //document.getElementById('chartLegend').style.display = state.strategicOnly ? 'none' : 'flex';
+      document.getElementById('chartScopeLabel').innerText =
+      `${teamAggregates[state.selectedTeam].name}
+      (Ingreso vs Entregas)`;
+
+      document.getElementById('chartLegend').style.display = 'flex';
     }
 
     function updateCapacityBars(curData) {
