@@ -390,6 +390,10 @@ const state = {
         )
       );  
 
+      console.log(
+        calculateWipDistribution()
+      );
+
    /*    console.log(
         'Periodo seleccionado:',
         state.selectedPeriod
@@ -767,6 +771,33 @@ const state = {
 
       document.getElementById('matrixTableBody').innerHTML = html;
       document.getElementById('matrixScopeLabel').innerText = `Ámbito: ${teamAggregates[state.selectedTeam].name} (${state.strategicOnly ? 'Solo Planning' : 'Visión Completa'})`;
+    }
+
+    function calculateWipDistribution() {
+
+      const filteredItems =
+        getFilteredItems();
+
+      const planningWip =
+        filteredItems.filter(
+          item => item.isPlanning
+        ).length;
+
+      const operationalWip =
+        filteredItems.filter(
+          item => !item.isPlanning
+        ).length;
+
+      const totalWip =
+        planningWip +
+        operationalWip;
+
+      return {
+        planningWip,
+        operationalWip,
+        totalWip
+      };
+
     }
 
     function updateWeeklyChart(curData) {
