@@ -301,6 +301,7 @@ const state = {
     function setPeriodFilter(period) {
 
       state.selectedPeriod = period;
+      applyGlobalFilters();
 
    /*    console.log(
         'Periodo seleccionado:',
