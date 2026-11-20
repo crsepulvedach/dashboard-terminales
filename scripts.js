@@ -178,8 +178,7 @@ const state = {
     function isClosedWithoutResolution(item) {
 
       const closedStatuses = [
-        'Finalizado',
-        'Cancelado'
+        'Finalizado'
       ];
 
       return (
@@ -299,10 +298,10 @@ const state = {
 
       state.selectedPeriod = period;
 
-      console.log(
+   /*    console.log(
         'Periodo seleccionado:',
         state.selectedPeriod
-      );
+      ); */
 
     }
 
@@ -399,7 +398,7 @@ const state = {
 
       const filteredItems = getFilteredItems();
 
-      console.log(
+   /*    console.log(
         "applyGlobalFilters",
         {
           raw: rawInventoryItems.length,
@@ -408,9 +407,9 @@ const state = {
           strategicOnly: state.strategicOnly,
           tableStatus: state.tableStatus
         }
-      ); 
+      ); */
 
-      console.log(
+      /* console.log(
         'Periodo:',
         state.selectedPeriod,
         'Inventario:',
@@ -446,7 +445,7 @@ const state = {
             i.team === 'chile' &&
             i.createdPeriod === state.selectedPeriod
         ).length
-      );
+      );*/
 
       // 1. Alertas y Badges de Bloqueos
       const blockerItems = filteredItems.filter(i => i.status === 'Detenido');
@@ -988,10 +987,10 @@ const state = {
           </tr>
         `;
       });
-      console.log(
+/*       console.log(
         'renderInventoryTable',
         filtered.length
-      );
+      ); */
       document.getElementById('inventory-tbody').innerHTML = html;
       document.getElementById('inventory-subtitle').innerText = `Mostrando ${filtered.length} de ${rawInventoryItems.length} requerimientos activos`;
     }
@@ -1144,7 +1143,7 @@ const state = {
               )
             };
           });
-          console.log(rawInventoryItems[0]);
+          /* console.log(rawInventoryItems[0]);
           console.log('Tickets Jira:', rawInventoryItems.length);
           
           console.log('Periodo seleccionado:', state.selectedPeriod);
@@ -1155,7 +1154,7 @@ const state = {
                 item.resolvedPeriod
               ]).filter(Boolean)
             )
-          ].sort().reverse();
+          ].sort().reverse(); */
           
           const latestPeriod = availablePeriods[0];
          
@@ -1168,13 +1167,13 @@ const state = {
 
         
 
-          console.log(
+          /* console.log(
             rawInventoryItems.filter(
               i =>
                 i.team === 'chile' &&
                 i.createdPeriod === state.selectedPeriod
             ).length
-          );
+          );*/
 
         
 
