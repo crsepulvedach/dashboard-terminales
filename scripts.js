@@ -1188,32 +1188,32 @@ const state = {
         {
           id: 'maduracion',
           title: 'En maduración',
-          rangeLabel: '31 - 120 días',
+          rangeLabel: '31 - 60 días',
           minDays: 31,
-          maxDays: 120,
+          maxDays: 60,
           color: 'var(--accent-blue)',
           badgeClass: 'wip',
-          items: filteredItems.filter(i => i.ageDays > 30 && i.ageDays <= 120)
+          items: filteredItems.filter(i => i.ageDays > 30 && i.ageDays <= 60)
         },
         {
           id: 'envejecidas',
           title: 'Envejecidas',
-          rangeLabel: '121 - 210 días',
-          minDays: 121,
-          maxDays: 210,
+          rangeLabel: '61 - 90 días',
+          minDays: 61,
+          maxDays: 90,
           color: 'var(--accent-amber)',
           badgeClass: 'warn',
-          items: filteredItems.filter(i => i.ageDays > 120 && i.ageDays <= 210)
+          items: filteredItems.filter(i => i.ageDays > 60 && i.ageDays <= 90)
         },
         {
           id: 'criticas',
           title: 'Críticas (Riesgo)',
-          rangeLabel: '> 210 días',
-          minDays: 211,
+          rangeLabel: '> 90 días',
+          minDays: 91,
           maxDays: null,
           color: 'var(--accent-rose)',
           badgeClass: 'danger',
-          items: filteredItems.filter(i => i.ageDays > 210)
+          items: filteredItems.filter(i => i.ageDays > 90)
         }
       ];
       let html = '';
@@ -1257,10 +1257,12 @@ const state = {
       const riesgoTotal = criticosCount + envejecidosCount;
       const riesgoPct = Math.round((riesgoTotal / total) * 100);
       let insightMessage = '';
-      if (riesgoPct > 25) {
-        insightMessage = `⚠️ <strong>Riesgo de Deuda de Backlog:</strong> Un <strong>${riesgoPct}%</strong> del inventario supera los 120 días abierto (${riesgoTotal} requerimientos). Te recomendamos abrir el listado de <em>Críticas</em> en Jira para acordar su cierre o cancelación.`;
+      if (riesgoPct > 0) {
+        insightMessage = `⚠️ <strong>Riesgo de Deuda de Backlog:</strong> Un <strong>${riesgoPct}%</strong> del inventario supera los 90 días abierto (${riesgoTotal} requerimientos). Te recomendamos abrir el listado de <em>Críticas</em> en Jira para acordar su cierre o cancelación.`;
+      } else if (riesgoPct > 25) {
+        insightText = `⚡ <strong>Atención en Flujo:</strong> El <strong>${riesgoPct}%</strong> del inventario supera los 60 días de antigüedad (${riesgoTotal} ítems).`;
       } else {
-        insightMessage = `✅ <strong>Flujo Saludable:</strong> Más del <strong>${100 - riesgoPct}%</strong> del trabajo se mantiene por debajo de 120 días.`;
+        insightMessage = `✅ <strong>Flujo Saludable:</strong> Más del <strong>${100 - riesgoPct}%</strong> del trabajo activo tiene menos de 60 días.`;
       }
       document.getElementById('agingInsightBox').innerHTML = insightMessage;
     }
