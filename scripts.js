@@ -3,7 +3,7 @@ const state = {
       strategicOnly: false, // true (solo Planning) | false (visión completa)
       tableStatus: 'TODOS', // 'TODOS' | 'En Curso' | 'En Análisis' | 'POR HACER' | 'Implementado' | 'Detenido'
       searchQuery: '',
-      selectedPeriod: 'all'
+      selectedPeriod: null, // 'YYYY-MM' | 'all'
     };
 
     /*const rawInventoryItems = [];*/
@@ -266,6 +266,10 @@ const state = {
 
     function existedInPeriod(item, period) {
 
+      if (isClosedWithoutResolution(item)) {
+        return false;
+      }
+
       if (period === 'all') {
         return true;
       }
@@ -312,6 +316,10 @@ const state = {
 
       const filteredItems =
         rawInventoryItems.filter(item => {
+
+          if (isClosedWithoutResolution(item)) {
+            return false;
+          }
 
           const matchTeam =
             state.selectedTeam === 'all' ||
