@@ -936,9 +936,20 @@ const state = {
     }
 
     function updateCapacityBars(curData) {
-      const planWip = teamAggregates[state.selectedTeam].plan.wip;
-      const totalWip = teamAggregates[state.selectedTeam].all.wip;
-      const opWip = Math.max(totalWip - planWip, 0);
+      //const planWip = teamAggregates[state.selectedTeam].plan.wip;
+      //const totalWip = teamAggregates[state.selectedTeam].all.wip;
+      //const opWip = Math.max(totalWip - planWip, 0);
+      const {
+        planningWip,
+        operationalWip,
+        totalWip
+      } = calculateWipDistribution();
+
+      const planWip = planningWip;
+      const opWip = operationalWip;
+
+
+
       const planPct = Math.round((planWip / Math.max(totalWip, 1)) * 100);
       const opPct = 100 - planPct;
 
