@@ -150,7 +150,7 @@ const state = {
         if (isClosedWithoutResolution(item)) {
           return false;
         } 
-               
+
         const matchTeam =
           state.selectedTeam === 'all' ||
           item.team === state.selectedTeam;
@@ -179,7 +179,6 @@ const state = {
 
       const closedStatuses = [
         'Finalizado',
-        'Implementado',
         'Cancelado'
       ];
 
