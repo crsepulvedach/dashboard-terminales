@@ -390,6 +390,8 @@ const state = {
         )
       );  
 
+      
+
       console.log(
         calculateWipDistribution()
       );
@@ -1059,6 +1061,11 @@ const state = {
       document.getElementById('slider-rec-lbl').innerText = `${Math.round(baseWip * 0.3)} (Rec.)`;
       document.getElementById('slider-cur-lbl').innerText = `${baseWip} (Actual)`;
       updateSimulator(baseWip);
+
+      console.log({
+        throughputOut,
+        wip
+      });
     }
 
     function updateSimulator(wipVal) {
