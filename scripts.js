@@ -489,6 +489,11 @@ const state = {
         wip =
           carryOver + balance;  
 
+        console.log({
+          throughputOut,
+          wip
+        });  
+
 /*         carryOver =
           curData.wip - balance; */
       }
@@ -511,10 +516,7 @@ const state = {
           tableStatus: state.tableStatus
         }
       ); */
-      console.log({
-        throughputOut,
-        wip
-      });
+      
     
 
       // 1. Alertas y Badges de Bloqueos
