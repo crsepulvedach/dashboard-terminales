@@ -876,7 +876,33 @@ const state = {
       });
 
       if (state.selectedTeam === 'all') {
-        const consData = teamAggregates.all[modeKey];
+        //const consData = teamAggregates.all[modeKey];
+        const chileMetrics = calculateTeamMetrics('chile');
+        const peruMetrics = calculateTeamMetrics('peru');
+        const supplyMetrics = calculateTeamMetrics('supply');
+
+        const consData = {
+          in:
+            chileMetrics.created +
+            peruMetrics.created +
+            supplyMetrics.created,
+
+          out:
+            chileMetrics.closed +
+            peruMetrics.closed +
+            supplyMetrics.closed,
+
+          wip:
+            calculateTeamWip('chile') +
+            calculateTeamWip('peru') +
+            calculateTeamWip('supply'),
+
+          blockers:
+            chileMetrics.blockers +
+            peruMetrics.blockers +
+            supplyMetrics.blockers
+        };
+
         html += `
           <tr style="background: var(--bg-card-hover); font-weight:700;">
             <td>Consolidado Soporte Terminales</td>
