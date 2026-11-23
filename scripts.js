@@ -976,12 +976,12 @@ const state = {
 
         const totalPlanningItems =
           rawInventoryItems.filter(item =>
-            !isClosedWithoutResolution(item)
+            !isClosedWithoutResolution(item) && existedInPeriod(item, state.selectedPeriod)
           ).length;
 
         const totalPlanningOnly =
           rawInventoryItems.filter(item =>
-            !isClosedWithoutResolution(item) &&
+            !isClosedWithoutResolution(item) && existedInPeriod(item, state.selectedPeriod) &&
             item.isPlanning
           ).length;
 
