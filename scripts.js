@@ -2268,7 +2268,95 @@ const state = {
             ).length
           );*/
 
-        
+        // ==========================================================================
+        // ORDENAMIENTO INTERACTIVO DE TABLA DE INVENTARIO
+        // ==========================================================================
+        let currentSortCol = null;
+        let currentSortAsc = true;
+
+        const PRIORITY_WEIGHTS = {
+          'muy alta': 4, 'highest': 4,
+          'alta': 3, 'high': 3,
+          'media': 2, 'medium': 2,
+          'baja': 1, 'low': 1,
+          'muy baja': 0, 'lowest': 0
+        };
+
+        function sortInventoryTable(colIndex, type) {
+          const table = document.querySelector('.table-responsive table') || document.querySelector('table');
+          if (!table) return;
+
+          const tbody = table.querySelector('tbody');
+          if (!tbody) return;
+
+          const rows = Array.from(tbody.querySelectorAll('tr'));
+          if (rows.length === 0) return;
+
+          // Alterna asc/desc
+          if (currentSortCol === colIndex) {
+            currentSortAsc = !currentSortAsc;
+          } else {
+            currentSortCol = colIndex;
+            currentSortAsc = true;
+          }
+
+          // Actualiza iconos visuales en th
+          table.querySelectorAll('th.sortable').forEach(th => {
+            const icon = th.querySelector('.sort-icon');
+            if (th.getAttribute('data-col') == colIndex) {
+              if (icon) icon.innerText = currentSortAsc ? ' ▲' : ' ▼';
+              th.style.color = '#38bdf8';
+            } else {
+              if (icon) icon.innerText = ' ↕';
+              th.style.color = '';
+            }
+          });
+
+          const getCellValue = (row, idx) => {
+            const cell = row.children[idx];
+            if (!cell) return '';
+            const text = cell.innerText.trim();
+
+            if (type === 'age') {
+              const num = parseInt(text.replace(/\D/g, ''), 10);
+              return isNaN(num) ? 0 : num;
+            }
+            if (type === 'priority') {
+              const key = text.toLowerCase();
+              return PRIORITY_WEIGHTS[key] !== undefined ? PRIORITY_WEIGHTS[key] : -1;
+            }
+            if (type === 'key') {
+              const match = text.match(/-(\d+)/);
+              return match ? parseInt(match[1], 10) : text;
+            }
+            return text.toLowerCase();
+          };
+
+          rows.sort((rowA, rowB) => {
+            const valA = getCellValue(rowA, colIndex);
+            const valB = getCellValue(rowB, colIndex);
+
+            let comparison = 0;
+            if (typeof valA === 'number' && typeof valB === 'number') {
+              comparison = valA - valB;
+            } else {
+              comparison = String(valA).localeCompare(String(valB), 'es', { numeric: true, sensitivity: 'base' });
+            }
+            return currentSortAsc ? comparison : -comparison;
+          });
+
+          rows.forEach(row => tbody.appendChild(row));
+        }
+
+        // Escuchar clics en los encabezados usando delegación de eventos
+        document.addEventListener('click', (e) => {
+          const th = e.target.closest('th.sortable');
+          if (!th) return;
+
+          const colIndex = parseInt(th.getAttribute('data-col'), 10);
+          const type = th.getAttribute('data-type') || 'text';
+          sortInventoryTable(colIndex, type);
+        });
 
           applyGlobalFilters();
 
