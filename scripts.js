@@ -895,6 +895,12 @@ const state = {
                 (planningOnly / planningItems) * 100
               ).toFixed(1)
             : '0.0';  
+
+        console.log({
+          planningOnly,
+          planningItems,
+          planPct
+        });    
     
         let diagBadge = '<span class="badge" style="background:rgba(52,211,153,0.2);color:var(--accent-emerald);">Equilibrado</span>';
         if (tKey === 'chile') diagBadge = '<span class="badge" style="background:rgba(56,189,248,0.2);color:var(--accent-blue);">WIP Controlado</span>';
@@ -1010,11 +1016,7 @@ const state = {
       }
 
       
-      console.log({
-        planningOnly,
-        planningItems,
-        planPct
-      });
+    
 
       document.getElementById('matrixTableBody').innerHTML = html;
       document.getElementById('matrixScopeLabel').innerText = `Ámbito: ${teamAggregates[state.selectedTeam].name} (${state.strategicOnly ? 'Solo Planning' : 'Visión Completa'})`;
