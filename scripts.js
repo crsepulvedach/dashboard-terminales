@@ -674,20 +674,11 @@ const state = {
       // 5. Matriz de Capacidad
       updateMatrixTable(modeKey);
 
-      console.log(
-        'Chile',
-        calculateTeamMetrics('chile')
-      );
+      console.log('Chile', calculateTeamMetrics('chile'), calculateTeamWip('chile'));
+      console.log('Peru', calculateTeamMetrics('peru'), calculateTeamWip('peru'));
+      console.log('Supply', calculateTeamMetrics('supply'), calculateTeamWip('supply'));
 
-      console.log(
-        'Peru',
-        calculateTeamMetrics('peru')
-      );
-
-      console.log(
-        'Supply',
-        calculateTeamMetrics('supply')
-      );
+      console.log('Consolidado actual', teamAggregates.all[modeKey]);
 
       // 6. Gráfico Semanal Planning vs Operativo
       updateWeeklyChart(curData);
