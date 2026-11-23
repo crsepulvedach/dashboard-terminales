@@ -490,10 +490,7 @@ const state = {
         wip =
           carryOver + balance;  
 
-        console.log({
-          throughputOut,
-          wip
-        });  
+        
 
 /*         carryOver =
           curData.wip - balance; */
@@ -731,11 +728,11 @@ const state = {
       // 5. Matriz de Capacidad
       updateMatrixTable(modeKey);
 
-      console.log('Chile', calculateTeamMetrics('chile'), calculateTeamWip('chile'));
-      console.log('Peru', calculateTeamMetrics('peru'), calculateTeamWip('peru'));
-      console.log('Supply', calculateTeamMetrics('supply'), calculateTeamWip('supply'));
+      //console.log('Chile', calculateTeamMetrics('chile'), calculateTeamWip('chile'));
+      //console.log('Peru', calculateTeamMetrics('peru'), calculateTeamWip('peru'));
+      //console.log('Supply', calculateTeamMetrics('supply'), calculateTeamWip('supply'));
 
-      console.log('Consolidado actual', teamAggregates.all[modeKey]);
+      //console.log('Consolidado actual', teamAggregates.all[modeKey]);
 
 
       // 6. Gráfico Semanal Planning vs Operativo
@@ -953,11 +950,7 @@ const state = {
               ).toFixed(1)
             : '0.0';  
 
-        console.log({
-          planningOnly,
-          planningItems,
-          planPct
-        });    
+           
     
         let diagBadge = '<span class="badge" style="background:rgba(52,211,153,0.2);color:var(--accent-emerald);">Equilibrado</span>';
         if (tKey === 'chile') diagBadge = '<span class="badge" style="background:rgba(56,189,248,0.2);color:var(--accent-blue);">WIP Controlado</span>';
@@ -2268,95 +2261,123 @@ const state = {
             ).length
           );*/
 
-        // ==========================================================================
-        // ORDENAMIENTO INTERACTIVO DE TABLA DE INVENTARIO
-        // ==========================================================================
-        let currentSortCol = null;
-        let currentSortAsc = true;
+          // ==========================================================================
+          // ORDENAMIENTO AUTOMÁTICO DE LA TABLA DE INVENTARIO ACTIVO
+          // ==========================================================================
+          (function initAutoTableSort() {
+            let sortColumnIndex = -1;
+            let sortAscending = true;
 
-        const PRIORITY_WEIGHTS = {
-          'muy alta': 4, 'highest': 4,
-          'alta': 3, 'high': 3,
-          'media': 2, 'medium': 2,
-          'baja': 1, 'low': 1,
-          'muy baja': 0, 'lowest': 0
-        };
+            const PRIORITY_ORDER = {
+              'muy alta': 4, 'highest': 4,
+              'alta': 3, 'high': 3,
+              'media': 2, 'medium': 2,
+              'baja': 1, 'low': 1,
+              'muy baja': 0, 'lowest': 0
+            };
 
-        function sortInventoryTable(colIndex, type) {
-          const table = document.querySelector('.table-responsive table') || document.querySelector('table');
-          if (!table) return;
+            document.addEventListener('click', function(e) {
+              const th = e.target.closest('th');
+              if (!th) return;
 
-          const tbody = table.querySelector('tbody');
-          if (!tbody) return;
+              const table = th.closest('table');
+              if (!table) return;
 
-          const rows = Array.from(tbody.querySelectorAll('tr'));
-          if (rows.length === 0) return;
+              // Verificamos que sea la tabla de Inventario (contiene columnas Clave o Resumen o Antigüedad)
+              const headerRow = th.parentElement;
+              const allHeaders = Array.from(headerRow.children);
+              const headerTexts = allHeaders.map(h => h.innerText.toLowerCase());
+              
+              const isInventoryTable = headerTexts.some(t => t.includes('clave') || t.includes('resumen') || t.includes('antigüedad') || t.includes('antiguedad'));
+              if (!isInventoryTable) return;
 
-          // Alterna asc/desc
-          if (currentSortCol === colIndex) {
-            currentSortAsc = !currentSortAsc;
-          } else {
-            currentSortCol = colIndex;
-            currentSortAsc = true;
-          }
+              const colIndex = allHeaders.indexOf(th);
+              const colName = th.innerText.replace(/[▲▼↕]/g, '').trim().toLowerCase();
 
-          // Actualiza iconos visuales en th
-          table.querySelectorAll('th.sortable').forEach(th => {
-            const icon = th.querySelector('.sort-icon');
-            if (th.getAttribute('data-col') == colIndex) {
-              if (icon) icon.innerText = currentSortAsc ? ' ▲' : ' ▼';
-              th.style.color = '#38bdf8';
-            } else {
-              if (icon) icon.innerText = ' ↕';
-              th.style.color = '';
-            }
-          });
+              // No ordenar la columna de acciones/botones
+              if (colName.includes('acción') || colName.includes('accion')) return;
 
-          const getCellValue = (row, idx) => {
-            const cell = row.children[idx];
-            if (!cell) return '';
-            const text = cell.innerText.trim();
+              const tbody = table.querySelector('tbody');
+              if (!tbody) return;
 
-            if (type === 'age') {
-              const num = parseInt(text.replace(/\D/g, ''), 10);
-              return isNaN(num) ? 0 : num;
-            }
-            if (type === 'priority') {
-              const key = text.toLowerCase();
-              return PRIORITY_WEIGHTS[key] !== undefined ? PRIORITY_WEIGHTS[key] : -1;
-            }
-            if (type === 'key') {
-              const match = text.match(/-(\d+)/);
-              return match ? parseInt(match[1], 10) : text;
-            }
-            return text.toLowerCase();
-          };
+              const rows = Array.from(tbody.querySelectorAll('tr'));
+              if (rows.length === 0) return;
 
-          rows.sort((rowA, rowB) => {
-            const valA = getCellValue(rowA, colIndex);
-            const valB = getCellValue(rowB, colIndex);
+              // Alternar orden ascendente / descendente
+              if (sortColumnIndex === colIndex) {
+                sortAscending = !sortAscending;
+              } else {
+                sortColumnIndex = colIndex;
+                sortAscending = true;
+              }
 
-            let comparison = 0;
-            if (typeof valA === 'number' && typeof valB === 'number') {
-              comparison = valA - valB;
-            } else {
-              comparison = String(valA).localeCompare(String(valB), 'es', { numeric: true, sensitivity: 'base' });
-            }
-            return currentSortAsc ? comparison : -comparison;
-          });
+              // Actualizar iconos visuales en todos los encabezados
+              allHeaders.forEach((header, idx) => {
+                // Limpiar flechas previas
+                const cleanText = header.innerText.replace(/[▲▼↕]/g, '').trim();
+                const isAction = cleanText.toLowerCase().includes('acción') || cleanText.toLowerCase().includes('accion');
+                
+                header.style.cursor = isAction ? 'default' : 'pointer';
+                header.style.userSelect = 'none';
 
-          rows.forEach(row => tbody.appendChild(row));
-        }
+                if (idx === colIndex) {
+                  header.innerHTML = `${cleanText} <span style="color: #38bdf8; font-size: 0.75rem;">${sortAscending ? '▲' : '▼'}</span>`;
+                  header.style.color = '#38bdf8';
+                } else if (!isAction) {
+                  header.innerHTML = `${cleanText} <span style="opacity: 0.4; font-size: 0.75rem;">↕</span>`;
+                  header.style.color = '';
+                }
+              });
 
-        // Escuchar clics en los encabezados usando delegación de eventos
-        document.addEventListener('click', (e) => {
-          const th = e.target.closest('th.sortable');
-          if (!th) return;
+              // Función para extraer y convertir el valor de cada celda
+              const extractValue = (row) => {
+                const cell = row.children[colIndex];
+                if (!cell) return '';
+                const text = cell.innerText.trim();
 
-          const colIndex = parseInt(th.getAttribute('data-col'), 10);
-          const type = th.getAttribute('data-type') || 'text';
-          sortInventoryTable(colIndex, type);
-        });
+                // 1. Antigüedad (ej: "52 días" -> 52)
+                if (colName.includes('antigüedad') || colName.includes('antiguedad') || colName.includes('días')) {
+                  const num = parseInt(text.replace(/\D/g, ''), 10);
+                  return isNaN(num) ? 0 : num;
+                }
+
+                // 2. Prioridad (orden por jerarquía de criticidad)
+                if (colName.includes('prioridad')) {
+                  const key = text.toLowerCase();
+                  return PRIORITY_ORDER[key] !== undefined ? PRIORITY_ORDER[key] : -1;
+                }
+
+                // 3. Clave Jira (ej: "BURC-414" -> ordena por el número 414)
+                if (colName.includes('clave') || colName.includes('key')) {
+                  const match = text.match(/-(\d+)/);
+                  return match ? parseInt(match[1], 10) : text;
+                }
+
+                // 4. Texto general (Resumen, Estado, Tipo, etc.)
+                return text.toLowerCase();
+              };
+
+              // Ordenar las filas
+              rows.sort((a, b) => {
+                const valA = extractValue(a);
+                const valB = extractValue(b);
+
+                let diff = 0;
+                if (typeof valA === 'number' && typeof valB === 'number') {
+                  diff = valA - valB;
+                } else {
+                  diff = String(valA).localeCompare(String(valB), 'es', { numeric: true, sensitivity: 'base' });
+                }
+
+                return sortAscending ? diff : -diff;
+              });
+
+              // Reinsertar las filas ordenadas en el DOM
+              rows.forEach(r => tbody.appendChild(r));
+
+              console.log(`✅ Inventario ordenado por: "${colName}" (${sortAscending ? 'ASC ▲' : 'DESC ▼'})`);
+            });
+          })();
 
           applyGlobalFilters();
 
