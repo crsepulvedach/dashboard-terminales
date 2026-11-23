@@ -881,7 +881,7 @@ const state = {
         const peruMetrics = calculateTeamMetrics('peru');
         const supplyMetrics = calculateTeamMetrics('supply');
 
-        const consData = {
+       /*  const consData = {
           in:
             chileMetrics.created +
             peruMetrics.created +
@@ -901,7 +901,52 @@ const state = {
             chileMetrics.blockers +
             peruMetrics.blockers +
             supplyMetrics.blockers
+        }; */
+
+        const totalIn =
+          chileMetrics.created +
+          peruMetrics.created +
+          supplyMetrics.created;
+
+        const totalOut =
+          chileMetrics.closed +
+          peruMetrics.closed +
+          supplyMetrics.closed;
+
+        const totalWip =
+          calculateTeamWip('chile') +
+          calculateTeamWip('peru') +
+          calculateTeamWip('supply');
+
+        const totalBlockers =
+          chileMetrics.blockers +
+          peruMetrics.blockers +
+          supplyMetrics.blockers;
+
+        const totalPlanningItems =
+          rawInventoryItems.filter(item =>
+            !isClosedWithoutResolution(item)
+          ).length;
+
+        const totalPlanningOnly =
+          rawInventoryItems.filter(item =>
+            !isClosedWithoutResolution(item) &&
+            item.isPlanning
+          ).length;
+
+        const consData = {
+          in: totalIn,
+          out: totalOut,
+          wip: totalWip,
+          blockers: totalBlockers,
+          rate: totalIn > 0
+            ? ((totalOut / totalIn) * 100).toFixed(1) + '%'
+            : '0.0%',
+          planPct: totalPlanningItems > 0
+            ? ((totalPlanningOnly / totalPlanningItems) * 100).toFixed(1)
+            : '0.0'
         };
+
 
         html += `
           <tr style="background: var(--bg-card-hover); font-weight:700;">
