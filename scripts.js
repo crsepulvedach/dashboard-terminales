@@ -760,6 +760,52 @@ const state = {
 
     }
 
+    function calculateTeamWip(teamKey) {
+
+      const periodEnd =
+        getPeriodEnd(
+          state.selectedPeriod
+        );
+
+      return rawInventoryItems.filter(item => {
+
+        if (isClosedWithoutResolution(item)) {
+          return false;
+        }
+
+        const matchTeam =
+          teamKey === 'all' ||
+          item.team === teamKey;
+
+        const matchStrategic =
+          !state.strategicOnly ||
+          item.isPlanning;
+
+        const createdDate =
+          new Date(item.created);
+
+        const resolvedDate =
+          item.resolutiondate
+            ? new Date(item.resolutiondate)
+            : null;
+
+        const openAtPeriodEnd =
+          createdDate <= periodEnd &&
+          (
+            !resolvedDate ||
+            resolvedDate > periodEnd
+          );
+
+        return (
+          matchTeam &&
+          matchStrategic &&
+          openAtPeriodEnd
+        );
+
+      }).length;
+
+    }
+
     function updateMatrixTable(modeKey) {
       const teams = state.selectedTeam === 'all' ? ['chile', 'peru', 'supply'] : [state.selectedTeam];
       let html = '';
@@ -768,6 +814,7 @@ const state = {
         const tObj = teamAggregates[tKey];
         const data = tObj[modeKey];
         const metrics = calculateTeamMetrics(tKey);
+        const teamWip = calculateTeamWip(tKey);
         let diagBadge = '<span class="badge" style="background:rgba(52,211,153,0.2);color:var(--accent-emerald);">Equilibrado</span>';
         if (tKey === 'chile') diagBadge = '<span class="badge" style="background:rgba(56,189,248,0.2);color:var(--accent-blue);">WIP Controlado</span>';
         if (tKey === 'peru') diagBadge = '<span class="badge" style="background:rgba(251,191,36,0.2);color:var(--accent-amber);">Enfoque Planning Alto</span>';
@@ -783,7 +830,7 @@ const state = {
             
             <td style="font-weight:700; color:var(--accent-emerald);">${metrics.closed}</td>
             <td>${data.rate}</td>
-            <td style="font-weight:700;">${data.wip}</td>
+            <td style="font-weight:700;">${teamWip}</td>
             
             <td><span class="badge ${data.blockers > 0 ? 'badge-block' : 'badge-operativo'}">${metrics.blockers}</span></td>
             <td><span class="badge badge-planning">${data.planPct}%</span></td>
