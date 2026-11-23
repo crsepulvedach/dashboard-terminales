@@ -674,6 +674,21 @@ const state = {
       // 5. Matriz de Capacidad
       updateMatrixTable(modeKey);
 
+      console.log(
+        'Chile',
+        calculateTeamMetrics('chile')
+      );
+
+      console.log(
+        'Peru',
+        calculateTeamMetrics('peru')
+      );
+
+      console.log(
+        'Supply',
+        calculateTeamMetrics('supply')
+      );
+
       // 6. Gráfico Semanal Planning vs Operativo
       updateWeeklyChart(curData);
 
@@ -695,6 +710,54 @@ const state = {
 
       // 12. Tabla de Inventario
       renderInventoryTable();
+    }
+
+    function calculateTeamMetrics(teamKey) {
+
+      const period = state.selectedPeriod;
+
+      const items = rawInventoryItems.filter(item => {
+
+        if (isClosedWithoutResolution(item)) {
+          return false;
+        }
+
+        const matchTeam =
+          teamKey === 'all' ||
+          item.team === teamKey;
+
+        const matchStrategic =
+          !state.strategicOnly ||
+          item.isPlanning;
+
+        return (
+          matchTeam &&
+          matchStrategic
+        );
+
+      });
+
+      const created =
+        items.filter(
+          item => item.createdPeriod === period
+        ).length;
+
+      const closed =
+        items.filter(
+          item => item.resolvedPeriod === period
+        ).length;
+
+      const blockers =
+        items.filter(
+          item => item.status === 'Detenido'
+        ).length;
+
+      return {
+        created,
+        closed,
+        blockers
+      };
+
     }
 
     function updateMatrixTable(modeKey) {
