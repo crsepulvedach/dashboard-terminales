@@ -812,7 +812,7 @@ const state = {
                 (metrics.closed / metrics.created) * 100
               ).toFixed(1) + '%'
             : '0.0%';
-        const planningItems =
+        /* const planningItems =
           rawInventoryItems.filter(item => {
 
             if (isClosedWithoutResolution(item)) {
@@ -825,8 +825,31 @@ const state = {
 
             return matchTeam;
 
-          }).length;
-        const planningOnly =
+          }).length; */
+
+          const planningItems =
+            rawInventoryItems.filter(item => {
+
+              if (isClosedWithoutResolution(item)) {
+                return false;
+              }
+
+              const matchTeam =
+                tKey === 'all' ||
+                item.team === tKey;
+
+              
+              return (
+                matchTeam &&
+                existedInPeriod(
+                  item,
+                  state.selectedPeriod
+                )
+              );
+
+            }).length;
+
+       /*  const planningOnly =
           rawInventoryItems.filter(item => {
 
             if (isClosedWithoutResolution(item)) {
@@ -842,7 +865,28 @@ const state = {
               item.isPlanning
             );
 
-          }).length;  
+          }).length;  */ 
+          const planningOnly =
+            rawInventoryItems.filter(item => {
+
+              if (isClosedWithoutResolution(item)) {
+                return false;
+              }
+
+              const matchTeam =
+                tKey === 'all' ||
+                item.team === tKey;             
+
+              return (
+                matchTeam &&
+                existedInPeriod(
+                  item,
+                  state.selectedPeriod
+                ) &&
+                item.isPlanning
+              );
+
+            }).length;
 
         const planPct =
           planningItems > 0
