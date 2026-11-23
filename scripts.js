@@ -680,11 +680,6 @@ const state = {
 
       console.log('Consolidado actual', teamAggregates.all[modeKey]);
 
-      console.log({
-        planningOnly,
-        planningItems,
-        planPct
-      });
 
       // 6. Gráfico Semanal Planning vs Operativo
       updateWeeklyChart(curData);
@@ -1013,6 +1008,13 @@ const state = {
           </tr>
         `;
       }
+
+      
+      console.log({
+        planningOnly,
+        planningItems,
+        planPct
+      });
 
       document.getElementById('matrixTableBody').innerHTML = html;
       document.getElementById('matrixScopeLabel').innerText = `Ámbito: ${teamAggregates[state.selectedTeam].name} (${state.strategicOnly ? 'Solo Planning' : 'Visión Completa'})`;
