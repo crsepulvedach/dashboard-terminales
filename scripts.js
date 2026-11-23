@@ -815,6 +815,51 @@ const state = {
         const data = tObj[modeKey];
         const metrics = calculateTeamMetrics(tKey);
         const teamWip = calculateTeamWip(tKey);
+        const completionRate =
+          metrics.created > 0
+            ? (
+                (metrics.closed / metrics.created) * 100
+              ).toFixed(1) + '%'
+            : '0.0%';
+        const planningItems =
+          rawInventoryItems.filter(item => {
+
+            if (isClosedWithoutResolution(item)) {
+              return false;
+            }
+
+            const matchTeam =
+              tKey === 'all' ||
+              item.team === tKey;
+
+            return matchTeam;
+
+          }).length;
+        const planningOnly =
+          rawInventoryItems.filter(item => {
+
+            if (isClosedWithoutResolution(item)) {
+              return false;
+            }
+
+            const matchTeam =
+              tKey === 'all' ||
+              item.team === tKey;
+
+            return (
+              matchTeam &&
+              item.isPlanning
+            );
+
+          }).length;  
+
+        const planPct =
+          planningItems > 0
+            ? (
+                (planningOnly / planningItems) * 100
+              ).toFixed(1)
+            : '0.0';  
+    
         let diagBadge = '<span class="badge" style="background:rgba(52,211,153,0.2);color:var(--accent-emerald);">Equilibrado</span>';
         if (tKey === 'chile') diagBadge = '<span class="badge" style="background:rgba(56,189,248,0.2);color:var(--accent-blue);">WIP Controlado</span>';
         if (tKey === 'peru') diagBadge = '<span class="badge" style="background:rgba(251,191,36,0.2);color:var(--accent-amber);">Enfoque Planning Alto</span>';
@@ -829,11 +874,11 @@ const state = {
             <td>${metrics.created}</td>
             
             <td style="font-weight:700; color:var(--accent-emerald);">${metrics.closed}</td>
-            <td>${data.rate}</td>
+            <td>${completionRate}</td>
             <td style="font-weight:700;">${teamWip}</td>
             
-            <td><span class="badge ${data.blockers > 0 ? 'badge-block' : 'badge-operativo'}">${metrics.blockers}</span></td>
-            <td><span class="badge badge-planning">${data.planPct}%</span></td>
+            <td><span class="badge ${metrics.blockers > 0 ? 'badge-block' : 'badge-operativo'}">${metrics.blockers}</span></td>
+            <td><span class="badge badge-planning">${planPct}%</span></td>
             <td>${diagBadge}</td>
           </tr>
         `;
