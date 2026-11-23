@@ -767,6 +767,7 @@ const state = {
       teams.forEach(tKey => {
         const tObj = teamAggregates[tKey];
         const data = tObj[modeKey];
+        const metrics = calculateTeamMetrics(tKey);
         let diagBadge = '<span class="badge" style="background:rgba(52,211,153,0.2);color:var(--accent-emerald);">Equilibrado</span>';
         if (tKey === 'chile') diagBadge = '<span class="badge" style="background:rgba(56,189,248,0.2);color:var(--accent-blue);">WIP Controlado</span>';
         if (tKey === 'peru') diagBadge = '<span class="badge" style="background:rgba(251,191,36,0.2);color:var(--accent-amber);">Enfoque Planning Alto</span>';
@@ -777,11 +778,14 @@ const state = {
             <td><strong>${tObj.name}</strong></td>
             <td><code style="color:var(--accent-blue);">${tObj.label}</code></td>
             <td><a href="${tObj.boardUrl}" target="_blank" style="color:var(--accent-blue);text-decoration:none;">${tObj.board}</a></td>
-            <td>${data.in}</td>
-            <td style="font-weight:700; color:var(--accent-emerald);">${data.out}</td>
+            // <td>${data.in}</td>
+            <td>${metrics.created}</td>
+            // <td style="font-weight:700; color:var(--accent-emerald);">${data.out}</td>
+            <td style="font-weight:700; color:var(--accent-emerald);">${metrics.closed}</td>
             <td>${data.rate}</td>
             <td style="font-weight:700;">${data.wip}</td>
-            <td><span class="badge ${data.blockers > 0 ? 'badge-block' : 'badge-operativo'}">${data.blockers}</span></td>
+            //<td><span class="badge ${data.blockers > 0 ? 'badge-block' : 'badge-operativo'}">${data.blockers}</span></td>
+            <td><span class="badge ${data.blockers > 0 ? 'badge-block' : 'badge-operativo'}">${metrics.blockers}</span></td>
             <td><span class="badge badge-planning">${data.planPct}%</span></td>
             <td>${diagBadge}</td>
           </tr>
