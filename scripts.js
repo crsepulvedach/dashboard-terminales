@@ -680,6 +680,12 @@ const state = {
 
       console.log('Consolidado actual', teamAggregates.all[modeKey]);
 
+      console.log({
+        planningOnly,
+        planningItems,
+        planPct
+      });
+
       // 6. Gráfico Semanal Planning vs Operativo
       updateWeeklyChart(curData);
 
