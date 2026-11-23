@@ -638,7 +638,7 @@ const state = {
       document.getElementById('weekly-flow-container').innerHTML = flowHtml;
       document.getElementById('weekly-finding-container').innerHTML = `💡 <strong>Hallazgo Ágil (${teamAggregates[state.selectedTeam].name}):</strong> Mayor volumen de resoluciones concentrado al inicio del periodo por cierres de reportería periódica.`;
 
-      // 4. Distribución de Estados Activos
+     /*  // 4. Distribución de Estados Activos
       const statusCounts = { "POR HACER": 0, "En Curso": 0, "En Análisis": 0, "Detenido": 0, "Implementado": 0 };
       filteredItems.forEach(i => { if (statusCounts[i.status] !== undefined) statusCounts[i.status]++; });
       const totalFiltered = Math.max(filteredItems.length, 1);
@@ -670,6 +670,63 @@ const state = {
       document.getElementById('status-bars-container').innerHTML = statusHtml;
       document.getElementById('status-dist-title').innerText = `Distribución de los ${filteredItems.length} Requerimientos Seleccionados`;
       document.getElementById('wip-warning-box').innerHTML = '⚠️ <strong>Sobrecarga Operativa:</strong> Con múltiples requerimientos abiertos en ejecución activa simultánea, los analistas alternan contexto, dilatando el Lead Time.';
+ */
+
+      // 4. Distribución de Requerimientos por Estado (Incluye Finalizado)
+      const statusCounts = { 
+        "POR HACER": 0, 
+        "En Curso": 0, 
+        "En Análisis": 0, 
+        "Detenido": 0, 
+        "Implementado": 0,
+        "Finalizado": 0 
+      };
+
+      filteredItems.forEach(i => { 
+        const status = (i.status || '').trim();
+        // Si el estado coincide exactamente con alguna clave
+        if (statusCounts[status] !== undefined) {
+          statusCounts[status]++;
+        } else if (['done', 'finalizada', 'cerrado', 'cerrada', 'resuelto', 'listo'].includes(status.toLowerCase())) {
+          // Captura variaciones de estados cerrados y los agrupa en Finalizado
+          statusCounts["Finalizado"]++;
+        }
+      });
+
+      const totalFiltered = Math.max(filteredItems.length, 1);
+
+      const statusConfig = [
+        { label: "📋 Por Hacer", key: "POR HACER", color: "#94a3b8" },
+        { label: "⚙️ En Curso", key: "En Curso", color: "var(--accent-blue)" },
+        { label: "🔍 En Análisis", key: "En Análisis", color: "var(--accent-purple)" },
+        { label: "⛔ Detenido", key: "Detenido", color: "var(--accent-rose)" },
+        { label: "🚀 Implementado", key: "Implementado", color: "#38bdf8" },
+        { label: "🏁 Finalizado", key: "Finalizado", color: "var(--accent-emerald)" }
+      ];
+
+      let statusHtml = '';
+      statusConfig.forEach(s => {
+        const cnt = statusCounts[s.key] || 0;
+        const pct = Math.round((cnt / totalFiltered) * 100);
+        statusHtml += `
+          <div>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.3rem;">
+              <span>${s.label}</span>
+              <strong style="color: ${s.color};">${cnt} ítems (${pct}%)</strong>
+            </div>
+            <div style="height: 12px; background: #1e293b; border-radius: 6px; overflow: hidden;">
+              <div style="width: ${pct}%; height: 100%; background: ${s.color};"></div>
+            </div>
+          </div>
+        `;
+      });
+
+      document.getElementById('status-bars-container').innerHTML = statusHtml;
+      document.getElementById('status-dist-title').innerText = `Distribución de los ${filteredItems.length} Requerimientos Seleccionados`;
+      
+      // Mensaje de diagnóstico contextualizado
+      const activeWip = (statusCounts["En Curso"] || 0) + (statusCounts["En Análisis"] || 0);
+      document.getElementById('wip-warning-box').innerHTML = `⚠️ <strong>Diagnóstico de Flujo:</strong> Hay <strong>${activeWip} requerimientos en ejecución activa simultánea</strong> (En Curso + En Análisis) frente a <strong>${statusCounts["Finalizado"]} entregas finalizadas</strong> en el período.`;
 
       // 5. Matriz de Capacidad
       updateMatrixTable(modeKey);
