@@ -385,22 +385,19 @@ const state = {
       state.selectedPeriod = period;
       applyGlobalFilters();
 
-      console.log(
+     /*  console.log(
         calculateWeeklyFlow(
           state.selectedPeriod
         )
-      );  
+      ); */  
 
       
 
-      console.log(
-        calculateWipDistribution()
-      );
+      // console.log(
+      //   calculateWipDistribution()
+      // );
 
-   /*    console.log(
-        'Periodo seleccionado:',
-        state.selectedPeriod
-      ); */
+   
 
     }
 
@@ -503,18 +500,6 @@ const state = {
       }); */
 
       const filteredItems = getFilteredItems();
-
-   /*    console.log(
-        "applyGlobalFilters",
-        {
-          raw: rawInventoryItems.length,
-          filtered: filteredItems.length,
-          team: state.selectedTeam,
-          strategicOnly: state.strategicOnly,
-          tableStatus: state.tableStatus
-        }
-      ); */
-      
     
 
       // 1. Alertas y Badges de Bloqueos
@@ -588,7 +573,7 @@ const state = {
           state.selectedPeriod
         );
 
-      console.log(weeklyFlowData);
+      // console.log(weeklyFlowData);
 
       const totalCreated =
         weeklyFlowData.reduce(
@@ -602,10 +587,6 @@ const state = {
           0
         );
 
-      console.log({
-        totalCreated,
-        totalResolved
-      });
 
       const maxFlowVal = Math.max(...weeklyFlowData.flatMap(w => [w.created, w.resolved]), 1);
 
@@ -728,13 +709,7 @@ const state = {
       // 5. Matriz de Capacidad
       updateMatrixTable(modeKey);
 
-      //console.log('Chile', calculateTeamMetrics('chile'), calculateTeamWip('chile'));
-      //console.log('Peru', calculateTeamMetrics('peru'), calculateTeamWip('peru'));
-      //console.log('Supply', calculateTeamMetrics('supply'), calculateTeamWip('supply'));
-
-      //console.log('Consolidado actual', teamAggregates.all[modeKey]);
-
-
+     
       // 6. Gráfico Semanal Planning vs Operativo
       updateWeeklyChart(curData);
 
@@ -2072,10 +2047,7 @@ const state = {
           </tr>
         `;
       });
-/*       console.log(
-        'renderInventoryTable',
-        filtered.length
-      ); */
+
       document.getElementById('inventory-tbody').innerHTML = html;
       document.getElementById('inventory-subtitle').innerText = `Mostrando ${filtered.length} de ${rawInventoryItems.length} requerimientos activos`;
     }
@@ -2228,11 +2200,7 @@ const state = {
               )
             };
           });
-          /* console.log(rawInventoryItems[0]);
-          console.log('Tickets Jira:', rawInventoryItems.length);
           
-          console.log('Periodo seleccionado:', state.selectedPeriod); */
-
           availablePeriods = [
             ...new Set(
               rawInventoryItems.flatMap(item => [
@@ -2252,14 +2220,6 @@ const state = {
           renderPeriodSelector();
 
         
-
-          /* console.log(
-            rawInventoryItems.filter(
-              i =>
-                i.team === 'chile' &&
-                i.createdPeriod === state.selectedPeriod
-            ).length
-          );*/
 
           // ==========================================================================
           // ORDENAMIENTO AUTOMÁTICO DE LA TABLA DE INVENTARIO ACTIVO
@@ -2375,7 +2335,7 @@ const state = {
               // Reinsertar las filas ordenadas en el DOM
               rows.forEach(r => tbody.appendChild(r));
 
-              console.log(`✅ Inventario ordenado por: "${colName}" (${sortAscending ? 'ASC ▲' : 'DESC ▼'})`);
+              //console.log(`✅ Inventario ordenado por: "${colName}" (${sortAscending ? 'ASC ▲' : 'DESC ▼'})`);
             });
           })();
 
