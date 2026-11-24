@@ -1,7 +1,427 @@
 {
-  "lastUpdate": "2026-11-23T11:36:08.717Z",
-  "totalIssues": 708,
+  "lastUpdate": "2026-11-24T13:09:21.430Z",
+  "totalIssues": 717,
   "issues": [
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404271",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404271",
+      "key": "BURC-1032",
+      "fields": {
+        "summary": "CLONE - Provisión Ordenes Rechazadas",
+        "created": "2026-11-24T09:53:52.980-0300",
+        "resolutiondate": null,
+        "assignee": null,
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/14255",
+          "description": "Requerimiento en análisis",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "En Análisis",
+          "id": "14255",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_PE"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404251",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404251",
+      "key": "BURC-1031",
+      "fields": {
+        "summary": "Base BI GEK Chile",
+        "created": "2026-11-24T09:41:49.554-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A2a89dcdc-7868-470d-b08c-7401699d0a35",
+          "accountId": "712020:2a89dcdc-7868-470d-b08c-7401699d0a35",
+          "emailAddress": "evo_csepulveda@externos.entel.cl",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:2a89dcdc-7868-470d-b08c-7401699d0a35/3665aecc-d000-4eab-8e36-06f72f7ff0e7/48",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:2a89dcdc-7868-470d-b08c-7401699d0a35/3665aecc-d000-4eab-8e36-06f72f7ff0e7/24",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:2a89dcdc-7868-470d-b08c-7401699d0a35/3665aecc-d000-4eab-8e36-06f72f7ff0e7/16",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/712020:2a89dcdc-7868-470d-b08c-7401699d0a35/3665aecc-d000-4eab-8e36-06f72f7ff0e7/32"
+          },
+          "displayName": "Cristian Sepulveda",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "En Curso",
+          "id": "12207",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_PE"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8403239",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8403239",
+      "key": "BURC-1030",
+      "fields": {
+        "summary": "Capacitación EPM GEK para usuarios visualizadores (Gerencia Terminales)",
+        "created": "2026-11-23T16:36:47.131-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
+          "accountId": "627d588281d82e00680c941d",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png"
+          },
+          "displayName": "Ricardo Queglas Cartes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8403236",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8403236",
+      "key": "BURC-1029",
+      "fields": {
+        "summary": "Formación EPM GEK",
+        "created": "2026-11-23T16:36:33.565-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
+          "accountId": "627d588281d82e00680c941d",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png"
+          },
+          "displayName": "Ricardo Queglas Cartes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8403224",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8403224",
+      "key": "BURC-1028",
+      "fields": {
+        "summary": "Status del maestro de productos en Oracle (input crítico para EPM GEK)",
+        "created": "2026-11-23T16:34:28.808-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
+          "accountId": "627d588281d82e00680c941d",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png"
+          },
+          "displayName": "Ricardo Queglas Cartes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8403205",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8403205",
+      "key": "BURC-1027",
+      "fields": {
+        "summary": "Eliminar viajes a Perú del presupuesto de gastos Plan 2027-2029",
+        "created": "2026-11-23T16:30:24.324-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=70121%3A95fb0e8e-c7b1-4c84-813e-2113ce7dc86c",
+          "accountId": "70121:95fb0e8e-c7b1-4c84-813e-2113ce7dc86c",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png"
+          },
+          "displayName": "Camila Vasquez Ferreros",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8403204",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8403204",
+      "key": "BURC-1026",
+      "fields": {
+        "summary": "Eliminar viajes a Perú del presupuesto de gastos Plan 2027-2029",
+        "created": "2026-11-23T16:30:15.136-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=70121%3A95fb0e8e-c7b1-4c84-813e-2113ce7dc86c",
+          "accountId": "70121:95fb0e8e-c7b1-4c84-813e-2113ce7dc86c",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png"
+          },
+          "displayName": "Camila Vasquez Ferreros",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8403201",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8403201",
+      "key": "BURC-1025",
+      "fields": {
+        "summary": "Reserva de horas pruebas de datos: integración Lakehouse con EPM GEK",
+        "created": "2026-11-23T16:30:01.599-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
+          "accountId": "627d588281d82e00680c941d",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png"
+          },
+          "displayName": "Ricardo Queglas Cartes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8403160",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8403160",
+      "key": "BURC-1024",
+      "fields": {
+        "summary": "Reu Mercado y Producto: impacto códigos espejo y convivencia PO + cupón fibra",
+        "created": "2026-11-23T16:18:56.818-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
+          "accountId": "627d588281d82e00680c941d",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png"
+          },
+          "displayName": "Ricardo Queglas Cartes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
     {
       "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
       "id": "8394910",
@@ -430,7 +850,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -478,7 +899,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -862,7 +1284,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -910,7 +1333,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -945,7 +1369,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -993,7 +1418,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -1041,7 +1467,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -1089,7 +1516,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -1137,7 +1565,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -1185,7 +1614,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -1233,7 +1663,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -1281,7 +1712,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -1364,7 +1796,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -1544,17 +1977,17 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/14255",
-          "description": "Requerimiento en análisis",
-          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "En Análisis",
-          "id": "14255",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/10201",
+          "description": "This was auto-generated by JIRA Service Desk during workflow import",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/status_generic.gif",
+          "name": "Finalizado",
+          "id": "10201",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
@@ -1592,11 +2025,11 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
-          "description": "",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/14255",
+          "description": "Requerimiento en análisis",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "En Análisis",
+          "id": "14255",
           "statusCategory": {
             "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
             "id": 4,
