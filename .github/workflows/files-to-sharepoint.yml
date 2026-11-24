@@ -22,8 +22,7 @@ jobs:
           ARCHIVOS=(
             "index.html"
             "styles.css"
-            "script.js"
-            "data.json"
+            "scripts.js"            
           )
 
           for FILE_PATH in "${ARCHIVOS[@]}"; do
