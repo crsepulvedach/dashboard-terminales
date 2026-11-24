@@ -27,9 +27,9 @@ jobs:
         run: |
           # 1. Define aquí tu listado de archivos separados por espacio
           ARCHIVOS=(
-            "./index.html"
-            "./styles.css"
-            "./scripts.js"
+            "index.html"
+            "styles.css"
+            "scripts.js"
           )
 
           # 2. Recorrer cada archivo del listado
