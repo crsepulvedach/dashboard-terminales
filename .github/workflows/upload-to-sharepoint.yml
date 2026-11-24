@@ -1,0 +1,61 @@
+name: Publicar archivo en SharePoint
+
+on:
+  push:
+    branches:
+      - main       # Se ejecuta al hacer push a main
+  workflow_dispatch: # Permite ejecutarlo manualmente con un botón en GitHub
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      # --- [AQUÍ VA TU PROCESO DE GENERACIÓN DEL ARCHIVO] ---
+      # Por ejemplo, si ejecutas un script de Python, R o Node que genera un reporte:
+      # - name: Generar reporte
+      #   run: python generar_reporte.py
+      #
+      # Para esta plantilla creamos un archivo de ejemplo:
+      - name: Preparar archivo para publicar
+        run: |
+          mkdir -p output
+          echo "Reporte generado el $(date)" > output/reporte_ejecucion.txt
+
+      # --- [SUBIDA A SHAREPOINT VÍA EL WEBHOOK] ---
+      - name: Enviar archivo a SharePoint
+        env:
+          WEBHOOK_URL: ${{ secrets.POWER_AUTOMATE_WEBHOOK_URL }}
+          WEBHOOK_TOKEN: ${{ secrets.WEBHOOK_SECRET_TOKEN }}
+          FILE_PATH: "output/reporte_ejecucion.txt" # Cambia esto por la ruta de tu archivo
+        run: |
+          # Extraer el nombre del archivo
+          FILE_NAME=$(basename "$FILE_PATH")
+
+          # Codificar el archivo en base64 (en una sola línea)
+          BASE64_CONTENT=$(base64 -w 0 "$FILE_PATH")
+
+          # Enviar la petición POST con curl
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "$WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d @- <<EOF
+          {
+            "fileName": "$FILE_NAME",
+            "fileContentBase64": "$BASE64_CONTENT",
+            "secretToken": "$WEBHOOK_TOKEN"
+          }
+          EOF
+          )
+
+          echo "Respuesta del Webhook: $HTTP_STATUS"
+
+          # Verificar que la respuesta sea 200 o 202
+          if [ "$HTTP_STATUS" -ne 200 ] && [ "$HTTP_STATUS" -ne 202 ]; then
+            echo "Error al enviar el archivo a SharePoint (Código HTTP $HTTP_STATUS)"
+            exit 1
+          fi
+
+          echo "Archivo $FILE_NAME enviado con éxito a SharePoint."
