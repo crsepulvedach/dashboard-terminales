@@ -1,6 +1,8 @@
 name: Publicar varios archivos en SharePoint
-
 on:
+  schedule:
+    - cron: '0 3 * * 1' # Se ejecuta cada lunes automáticamente
+  
   push:
     branches:
       - main # Se ejecuta al hacer push a main
