@@ -1,9 +1,6 @@
 name: Publicar archivo en SharePoint
 
 on:
-  push:
-    branches:
-      - dev       # Se ejecuta al hacer push a main
   workflow_dispatch: # Permite ejecutarlo manualmente con un botón en GitHub
 
 jobs:
