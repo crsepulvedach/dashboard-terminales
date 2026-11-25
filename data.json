@@ -1,7 +1,391 @@
 {
-  "lastUpdate": "2026-11-24T13:09:21.430Z",
-  "totalIssues": 717,
+  "lastUpdate": "2026-11-25T11:57:12.670Z",
+  "totalIssues": 725,
   "issues": [
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404971",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404971",
+      "key": "BURC-1040",
+      "fields": {
+        "summary": "Integración Claude con Jira para Max",
+        "created": "2026-11-24T11:50:40.886-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=620a3f57878c2f007297cba0",
+          "accountId": "620a3f57878c2f007297cba0",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/1440ded50ef62f0969a7281899c6f035?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMC-5.png",
+            "24x24": "https://secure.gravatar.com/avatar/1440ded50ef62f0969a7281899c6f035?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMC-5.png",
+            "16x16": "https://secure.gravatar.com/avatar/1440ded50ef62f0969a7281899c6f035?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMC-5.png",
+            "32x32": "https://secure.gravatar.com/avatar/1440ded50ef62f0969a7281899c6f035?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FMC-5.png"
+          },
+          "displayName": "Maximiliano Contador Clunes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404968",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404968",
+      "key": "BURC-1039",
+      "fields": {
+        "summary": "Integración Claude con Jira para Camila",
+        "created": "2026-11-24T11:50:35.023-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=70121%3A95fb0e8e-c7b1-4c84-813e-2113ce7dc86c",
+          "accountId": "70121:95fb0e8e-c7b1-4c84-813e-2113ce7dc86c",
+          "avatarUrls": {
+            "48x48": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png",
+            "24x24": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png",
+            "16x16": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png",
+            "32x32": "https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/initials/CF-1.png"
+          },
+          "displayName": "Camila Vasquez Ferreros",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404966",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404966",
+      "key": "BURC-1038",
+      "fields": {
+        "summary": "Integración Claude con Jira para Ignacio",
+        "created": "2026-11-24T11:50:29.394-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A9fe7cb99-e3c1-45bb-baa3-d71e6fefeb1f",
+          "accountId": "712020:9fe7cb99-e3c1-45bb-baa3-d71e6fefeb1f",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/7542ee2c71345779d4efe9427133d787?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FID-5.png",
+            "24x24": "https://secure.gravatar.com/avatar/7542ee2c71345779d4efe9427133d787?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FID-5.png",
+            "16x16": "https://secure.gravatar.com/avatar/7542ee2c71345779d4efe9427133d787?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FID-5.png",
+            "32x32": "https://secure.gravatar.com/avatar/7542ee2c71345779d4efe9427133d787?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FID-5.png"
+          },
+          "displayName": "Ignacio Rojas Donoso",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404964",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404964",
+      "key": "BURC-1037",
+      "fields": {
+        "summary": "Integración Claude con Jira para Nico",
+        "created": "2026-11-24T11:50:23.613-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3Ab691c76e-89ce-4564-a40f-f22f16332f30",
+          "accountId": "712020:b691c76e-89ce-4564-a40f-f22f16332f30",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/2654e507a68b0bcb97980f8e92ef8867?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FNB-4.png",
+            "24x24": "https://secure.gravatar.com/avatar/2654e507a68b0bcb97980f8e92ef8867?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FNB-4.png",
+            "16x16": "https://secure.gravatar.com/avatar/2654e507a68b0bcb97980f8e92ef8867?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FNB-4.png",
+            "32x32": "https://secure.gravatar.com/avatar/2654e507a68b0bcb97980f8e92ef8867?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FNB-4.png"
+          },
+          "displayName": "Nicolas Gutierrez Bustamante",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404962",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404962",
+      "key": "BURC-1036",
+      "fields": {
+        "summary": "Integración Claude con Jira para Richi",
+        "created": "2026-11-24T11:50:16.437-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
+          "accountId": "627d588281d82e00680c941d",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png"
+          },
+          "displayName": "Ricardo Queglas Cartes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/10201",
+          "description": "This was auto-generated by JIRA Service Desk during workflow import",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/status_generic.gif",
+          "name": "Finalizado",
+          "id": "10201",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404961",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404961",
+      "key": "BURC-1035",
+      "fields": {
+        "summary": "Integración Claude con Jira",
+        "created": "2026-11-24T11:50:10.579-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
+          "accountId": "627d588281d82e00680c941d",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png"
+          },
+          "displayName": "Ricardo Queglas Cartes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "En Curso",
+          "id": "12207",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404938",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404938",
+      "key": "BURC-1034",
+      "fields": {
+        "summary": "Procesos IA",
+        "created": "2026-11-24T11:47:32.749-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
+          "accountId": "627d588281d82e00680c941d",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png"
+          },
+          "displayName": "Ricardo Queglas Cartes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8404918",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8404918",
+      "key": "BURC-1033",
+      "fields": {
+        "summary": "Validación Cierre de mes cargado",
+        "created": "2026-11-24T11:42:57.629-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
+          "accountId": "627d588281d82e00680c941d",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "24x24": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "16x16": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png",
+            "32x32": "https://secure.gravatar.com/avatar/e53f30b87dc0d17e75728877c7f30724?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FRC-3.png"
+          },
+          "displayName": "Ricardo Queglas Cartes",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "En Curso",
+          "id": "12207",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": [
+          "CDG_CL"
+        ]
+      }
+    },
     {
       "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
       "id": "8404271",
@@ -948,7 +1332,8 @@
           }
         },
         "labels": [
-          "Planning"
+          "Planning",
+          "Supply"
         ]
       }
     },
@@ -996,6 +1381,7 @@
           }
         },
         "labels": [
+          "CDG_PE",
           "Planning"
         ]
       }
@@ -1453,11 +1839,11 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
-          "description": "",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/14255",
+          "description": "Requerimiento en análisis",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "En Análisis",
+          "id": "14255",
           "statusCategory": {
             "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
             "id": 4,
@@ -1551,11 +1937,11 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
-          "description": "",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/14255",
+          "description": "Requerimiento en análisis",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "En Análisis",
+          "id": "14255",
           "statusCategory": {
             "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
             "id": 4,
@@ -3216,17 +3602,17 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
-          "description": "",
-          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "En Curso",
-          "id": "12207",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/10201",
+          "description": "This was auto-generated by JIRA Service Desk during workflow import",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/status_generic.gif",
+          "name": "Finalizado",
+          "id": "10201",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
@@ -3243,7 +3629,7 @@
       "fields": {
         "summary": "Governance Planificación: Supply como responsable en la definición del ciclo de vida del producto",
         "created": "2026-10-05T11:03:11.645-0300",
-        "resolutiondate": null,
+        "resolutiondate": "2026-11-24T16:30:29.637-0300",
         "assignee": {
           "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A0665a780-ecb8-4699-862d-967b70ea8278",
           "accountId": "712020:0665a780-ecb8-4699-862d-967b70ea8278",
@@ -3265,17 +3651,17 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/13021",
-          "description": "",
-          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "Implementado",
-          "id": "13021",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/10201",
+          "description": "This was auto-generated by JIRA Service Desk during workflow import",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/status_generic.gif",
+          "name": "Finalizado",
+          "id": "10201",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
@@ -10242,17 +10628,17 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12207",
-          "description": "",
-          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "En Curso",
-          "id": "12207",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/10201",
+          "description": "This was auto-generated by JIRA Service Desk during workflow import",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/status_generic.gif",
+          "name": "Finalizado",
+          "id": "10201",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
@@ -18953,7 +19339,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_CL"
+        ]
       }
     },
     {
@@ -19229,7 +19617,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -19275,7 +19665,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -19321,7 +19713,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -19367,7 +19761,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -20151,7 +20547,7 @@
       "fields": {
         "summary": "Resultado y Efectos SS [Habitual]",
         "created": "2026-05-25T12:34:40.278-0400",
-        "resolutiondate": null,
+        "resolutiondate": "2026-11-24T17:40:05.185-0300",
         "assignee": {
           "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
           "accountId": "627d588281d82e00680c941d",
@@ -20173,17 +20569,17 @@
           "id": "3"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/11743",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "Cancelado",
+          "id": "11743",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
@@ -20192,6 +20588,7 @@
           "BURC-361",
           "BURC-419",
           "BURC-497",
+          "CDG_CL",
           "Habitual"
         ]
       }
@@ -20596,7 +20993,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -20642,7 +21041,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -20688,7 +21089,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -20734,7 +21137,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -20780,7 +21185,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -20826,7 +21233,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -20872,7 +21281,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -20918,7 +21329,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -20964,7 +21377,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -21010,7 +21425,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -21056,7 +21473,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -21102,7 +21521,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -21194,7 +21615,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -21286,7 +21709,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -21332,7 +21757,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -21424,7 +21851,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -21516,7 +21945,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -21608,7 +22039,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -21884,7 +22317,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -21976,7 +22411,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -22114,7 +22551,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -22208,7 +22647,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -22254,7 +22695,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -22265,7 +22708,7 @@
       "fields": {
         "summary": "Flash contable equipos y accesorios [Habitual]",
         "created": "2026-05-04T08:56:30.726-0400",
-        "resolutiondate": null,
+        "resolutiondate": "2026-11-24T17:40:00.350-0300",
         "assignee": {
           "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
           "accountId": "627d588281d82e00680c941d",
@@ -22287,20 +22730,21 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/11743",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "Cancelado",
+          "id": "11743",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
+          "CDG_CL",
           "Habitual"
         ]
       }
@@ -22313,7 +22757,7 @@
       "fields": {
         "summary": "Cierre Financiero [Habitual]",
         "created": "2026-05-04T08:56:23.718-0400",
-        "resolutiondate": null,
+        "resolutiondate": "2026-11-24T17:39:55.617-0300",
         "assignee": {
           "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
           "accountId": "627d588281d82e00680c941d",
@@ -22335,20 +22779,21 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/11743",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "Cancelado",
+          "id": "11743",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
+          "CDG_CL",
           "Habitual"
         ]
       }
@@ -22361,7 +22806,7 @@
       "fields": {
         "summary": "Flash contable equipos y accesorios [Habitual]",
         "created": "2026-05-04T08:56:19.624-0400",
-        "resolutiondate": null,
+        "resolutiondate": "2026-11-24T17:39:50.937-0300",
         "assignee": {
           "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
           "accountId": "627d588281d82e00680c941d",
@@ -22383,20 +22828,21 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/11743",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "Cancelado",
+          "id": "11743",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
+          "CDG_CL",
           "Habitual"
         ]
       }
@@ -22536,7 +22982,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_CL"
+        ]
       }
     },
     {
@@ -22989,7 +23437,7 @@
       "fields": {
         "summary": "Resultado y Efectos SS [Habitual]",
         "created": "2026-05-04T08:39:20.105-0400",
-        "resolutiondate": null,
+        "resolutiondate": "2026-11-24T17:39:46.090-0300",
         "assignee": {
           "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
           "accountId": "627d588281d82e00680c941d",
@@ -23011,17 +23459,17 @@
           "id": "3"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/11743",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "Cancelado",
+          "id": "11743",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
@@ -23029,6 +23477,7 @@
           "BURC-297",
           "BURC-361",
           "BURC-419",
+          "CDG_CL",
           "Habitual"
         ]
       }
@@ -23318,7 +23767,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -23329,7 +23780,7 @@
       "fields": {
         "summary": "[CH-PE] Logística Inversa",
         "created": "2026-04-22T11:03:06.695-0400",
-        "resolutiondate": null,
+        "resolutiondate": "2026-11-24T17:39:41.249-0300",
         "assignee": {
           "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
           "accountId": "627d588281d82e00680c941d",
@@ -23351,20 +23802,21 @@
           "id": "2"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/11743",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "Cancelado",
+          "id": "11743",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
+          "CDG_CL",
           "Habitual"
         ]
       }
@@ -23830,7 +24282,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_CL"
+        ]
       }
     },
     {
@@ -24112,7 +24566,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -24298,7 +24754,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_CL"
+        ]
       }
     },
     {
@@ -24657,7 +25115,7 @@
       "fields": {
         "summary": "Resultado y Efectos SS [Habitual]",
         "created": "2026-03-19T21:44:43.901-0300",
-        "resolutiondate": null,
+        "resolutiondate": "2026-11-24T17:39:33.389-0300",
         "assignee": {
           "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=627d588281d82e00680c941d",
           "accountId": "627d588281d82e00680c941d",
@@ -24679,23 +25137,24 @@
           "id": "3"
         },
         "status": {
-          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/11743",
           "description": "",
           "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
-          "name": "POR HACER",
-          "id": "12777",
+          "name": "Cancelado",
+          "id": "11743",
           "statusCategory": {
-            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
-            "id": 4,
-            "key": "indeterminate",
-            "colorName": "yellow",
-            "name": "In Progress"
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/3",
+            "id": 3,
+            "key": "done",
+            "colorName": "green",
+            "name": "Done"
           }
         },
         "labels": [
           "BURC-177",
           "BURC-297",
           "BURC-361",
+          "CDG_CL",
           "Habitual"
         ]
       }
@@ -25037,7 +25496,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_CL"
+        ]
       }
     },
     {
@@ -25083,7 +25544,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -25640,6 +26103,7 @@
           }
         },
         "labels": [
+          "CDG_CL",
           "Urgente"
         ]
       }
@@ -25917,7 +26381,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_CL"
+        ]
       }
     },
     {
@@ -28269,7 +28735,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -28499,7 +28967,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -30069,7 +30539,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -31340,7 +31812,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -32450,7 +32924,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "Supply"
+        ]
       }
     },
     {
@@ -33048,7 +33524,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -33646,7 +34124,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
@@ -33692,7 +34172,9 @@
             "name": "In Progress"
           }
         },
-        "labels": []
+        "labels": [
+          "CDG_PE"
+        ]
       }
     },
     {
