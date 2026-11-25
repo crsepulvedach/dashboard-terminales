@@ -32,7 +32,7 @@ header {
   background: linear-gradient(180deg, #131c2e 0%, var(--bg-primary) 100%);
   border-bottom: 1px solid var(--border-color); padding: 1.25rem 2rem; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px);
 }
-.header-container { max-width: 1560px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+.header-container { width: 100%;max-width: 1560px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
 .brand-section { display: flex; align-items: center; gap: 1rem; }
 .badge-icon { width: 44px; height: 44px; background: linear-gradient(135deg, #2563eb, #7c3aed); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 20px rgba(124, 58, 237, 0.4); font-size: 1.4rem; }
 .brand-info h1 { font-size: 1.35rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.6rem; }
