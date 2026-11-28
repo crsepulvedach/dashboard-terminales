@@ -1,7 +1,53 @@
 {
-  "lastUpdate": "2026-11-27T11:38:34.626Z",
-  "totalIssues": 727,
+  "lastUpdate": "2026-11-28T11:13:40.339Z",
+  "totalIssues": 728,
   "issues": [
+    {
+      "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
+      "id": "8410859",
+      "self": "https://tdentel.atlassian.net/rest/api/3/issue/8410859",
+      "key": "BURC-1043",
+      "fields": {
+        "summary": "Funnel tasa de renovación tiendas",
+        "created": "2026-11-27T10:19:30.115-0300",
+        "resolutiondate": null,
+        "assignee": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/user?accountId=712020%3A9fe7cb99-e3c1-45bb-baa3-d71e6fefeb1f",
+          "accountId": "712020:9fe7cb99-e3c1-45bb-baa3-d71e6fefeb1f",
+          "avatarUrls": {
+            "48x48": "https://secure.gravatar.com/avatar/7542ee2c71345779d4efe9427133d787?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FID-5.png",
+            "24x24": "https://secure.gravatar.com/avatar/7542ee2c71345779d4efe9427133d787?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FID-5.png",
+            "16x16": "https://secure.gravatar.com/avatar/7542ee2c71345779d4efe9427133d787?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FID-5.png",
+            "32x32": "https://secure.gravatar.com/avatar/7542ee2c71345779d4efe9427133d787?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Finitials%2FID-5.png"
+          },
+          "displayName": "Ignacio Rojas Donoso",
+          "active": true,
+          "timeZone": "America/Santiago",
+          "accountType": "atlassian"
+        },
+        "priority": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/priority/2",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/priorities/high_new.svg",
+          "name": "High",
+          "id": "2"
+        },
+        "status": {
+          "self": "https://tdentel.atlassian.net/rest/api/3/status/12777",
+          "description": "",
+          "iconUrl": "https://tdentel.atlassian.net/images/icons/statuses/generic.png",
+          "name": "POR HACER",
+          "id": "12777",
+          "statusCategory": {
+            "self": "https://tdentel.atlassian.net/rest/api/3/statuscategory/4",
+            "id": 4,
+            "key": "indeterminate",
+            "colorName": "yellow",
+            "name": "In Progress"
+          }
+        },
+        "labels": []
+      }
+    },
     {
       "expand": "renderedFields,names,schema,operations,editmeta,changelog,versionedRepresentations",
       "id": "8406929",
